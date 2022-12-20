@@ -9,6 +9,8 @@ import Board.Spot.*;
 public class Board {
     private static Spot[][] board= new Spot[8][8];
 
+
+
     public static void createBoard(){
         buildBoardSpots();
         placeRooks();
@@ -96,5 +98,34 @@ public class Board {
             }
 
         }
+    }
+
+    public static Spot[][] getBoard() {
+        return board;
+    }
+
+    public static int getVertical(Piece piece){
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                    if(board[i][j].equals(piece)){
+                        return i;
+                }
+            }
+        }
+        System.out.println("Piece isn't on the board");
+        return 0;
+    }
+
+
+    public static int getHorizontal(Piece piece){
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if(board[i][j].equals(piece)){
+                    return j;
+                }
+            }
+        }
+        System.out.println("Piece isn't on the board");
+        return 0;
     }
 }
