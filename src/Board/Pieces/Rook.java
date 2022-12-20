@@ -17,5 +17,9 @@ public class Rook extends Piece{
     @Override
     public void movePiece(int vertical, int horizontal) {
 
+        for (int i = 0; i < ; i++) {
+
+        }
+        if (vertical == currentv )
     }
 }

@@ -13,6 +13,7 @@ public class Bishop extends Piece{
         return new Bishop("♝");
     }
 
+    @Override
     public void movePiece(int vertical, int horizontal) {
 
     }

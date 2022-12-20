@@ -11,6 +11,7 @@ public class Spot {
     }
 
     public void printSpot(){
+
         if(this.piece ==null){
             System.out.print(spotColor);
             System.out.print("   ");
@@ -27,6 +28,7 @@ public class Spot {
     }
 
     public void setPiece(Piece piece) {
+
         this.piece = piece;
     }
 

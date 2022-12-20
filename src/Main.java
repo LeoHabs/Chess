@@ -9,5 +9,7 @@ public class Main {
         Board.printBoard();
         Board.getBoard()[0][1].getPiece().movePiece(2,1);
         Board.printBoard();
+        Board.getBoard()[6][0].getPiece().movePiece(5,1);
+        Board.printBoard();
     }
 }
