@@ -19,8 +19,38 @@ public class Knight extends Piece {
         int currentVertical = Board.getVertical(this);
         int currentHorizontal = Board.getHorizontal(this);
 
-        if (vertical == currentVertical + 2 && horizontal == currentHorizontal -1){
-
+        if (vertical == currentVertical - 2 && horizontal == currentHorizontal - 1) {
+            Board.movePiece(this, horizontal, vertical);
+            return;
         }
+        if (vertical == currentVertical - 1 && horizontal == currentHorizontal - 2) {
+            Board.movePiece(this, horizontal, vertical);
+            return;
+        }
+        if (vertical == currentVertical + 1 && horizontal == currentHorizontal - 2) {
+            Board.movePiece(this, horizontal, vertical);
+            return;
+        }
+        if (vertical == currentVertical + 2 && horizontal == currentHorizontal - 1) {
+            Board.movePiece(this, horizontal, vertical);
+            return;
+        }
+        if (vertical == currentVertical + 2 && horizontal == currentHorizontal + 1) {
+            Board.movePiece(this, horizontal, vertical);
+            return;
+        }
+        if (vertical == currentVertical + 1 && horizontal == currentHorizontal + 2) {
+            Board.movePiece(this, horizontal, vertical);
+            return;
+        }
+        if (vertical == currentVertical - 1 && horizontal == currentHorizontal + 2) {
+            Board.movePiece(this, horizontal, vertical);
+            return;
+        }
+        if (vertical == currentVertical - 2 && horizontal == currentHorizontal + 1) {
+            Board.movePiece(this, horizontal, vertical);
+            return;
+        }
+        System.out.println("Illegal move!");
     }
 }
