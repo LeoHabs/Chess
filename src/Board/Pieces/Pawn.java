@@ -4,7 +4,7 @@ import Board.Board;
 
 import java.util.Scanner;
 
-public class Pawn extends  Piece{
+public class Pawn extends  Piece {
 
     private boolean isFirstMove = true;
 
@@ -28,13 +28,15 @@ public class Pawn extends  Piece{
         if (isFirstMove) {
             if (vertical == currentVertical - 2 || vertical == currentVertical - 1) {
                 Board.movePiece(this, horizontal, vertical);
-            } else if (vertical == currentVertical + 2 || vertical == currentVertical + 1) {
+            }
+            if (vertical == currentVertical + 2 || vertical == currentVertical + 1) {
                 Board.movePiece(this, horizontal, vertical);
             }
         } else {
             if (vertical == currentVertical - 1) {
                 Board.movePiece(this, horizontal, vertical);
-            } else if (vertical == currentVertical + 1) {
+            }
+            if (vertical == currentVertical + 1) {
                 Board.movePiece(this, horizontal, vertical);
             }
         }

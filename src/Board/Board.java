@@ -20,6 +20,7 @@ public class Board {
         placeKingQueen();
     }
     public static void printBoard(){
+
         System.out.print("\033[1;37m");
         System.out.println("   A  B  C  D  E  F  G  H");
         System.out.print("\033[0m");
@@ -36,6 +37,7 @@ public class Board {
         }
     }
     public static void placePawns(){
+
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j <board[i].length; j++) {
                 if(i == 1){
@@ -49,6 +51,7 @@ public class Board {
     }
 
     public static void placeRooks(){
+
         board[0][0].setPiece(Rook.createBlackRook());
         board[0][7].setPiece(Rook.createBlackRook());
         board[7][0].setPiece(Rook.createWhiteRook());
@@ -78,6 +81,7 @@ public class Board {
 
     }
     public static void buildBoardSpots(){
+
         for (int i = 0; i < board.length; i++) {
             if(i%2 != 0){
                 for (int j = 0; j <board[i].length; j++) {
@@ -105,6 +109,7 @@ public class Board {
     }
 
     public static int getVertical(Piece piece){
+
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                     if(board[i][j].getPiece().equals(piece)){
