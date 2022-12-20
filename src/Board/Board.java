@@ -128,4 +128,9 @@ public class Board {
         System.out.println("Piece isn't on the board");
         return 0;
     }
+
+    public static void movePiece(Piece piece,int horizontal,int vertical){
+        board[getVertical(piece)][getHorizontal(piece)].setPiece(null);
+        board[vertical][horizontal].setPiece(piece);
+    }
 }
