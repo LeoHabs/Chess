@@ -20,16 +20,20 @@ public class RegisteUser {
             }
             break;
         }
-
-        while (true) {
-            System.out.print("Age: ");
-            user.setAge(scanner.nextInt());
-            if (user.getAge()<10) {
-                System.out.println("\033[0;31m" + "You need to have 10 years." + "\033[39m" + "\033[49m");
-                continue;
+        try {
+            while (true) {
+                System.out.print("Age: ");
+                user.setAge(scanner.nextInt());
+                if (user.getAge() < 10) {
+                    System.out.println("\033[0;31m" + "You need to have 10 years." + "\033[39m" + "\033[49m");
+                    continue;
+                }
+                break;
             }
-            break;
+        } catch (Exception e) {
+            System.out.println("\033[0;31m" + "Not recognise the number." + "\033[39m" + "\033[49m");
         }
+
 
         while (!Checkers.emailValid(email)) {
             System.out.print("Email: ");
@@ -57,19 +61,12 @@ public class RegisteUser {
                     "Numbers " + "\033[39m" + "\033[49m");
         }
         DataBase.users.add(user);
-        System.out.println("Name: "+user.getName());
-        System.out.println("User Name: "+user.getUserName());
+        System.out.println("Name: " + user.getName());
+        System.out.println("User Name: " + user.getUserName());
         System.out.println("Age: " + user.getAge());
         System.out.println("Email: " + user.getEmail());
-        System.out.println("Password: "+user.getPassword());
+        System.out.println("Password: " + user.getPassword());
 
-    }
-
-    public static void printUsers() {
-        System.out.println("Name:" + " | " + "User: " + " | " + "Email: " + " | " + "Password: ");
-        for (Users users : DataBase.users) {
-            System.out.println(users);
-        }
     }
 
 }

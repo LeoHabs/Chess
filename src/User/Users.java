@@ -1,5 +1,7 @@
 package User;
 
+import java.util.Scanner;
+
 public class Users {
 
     private String name;
@@ -23,6 +25,18 @@ public class Users {
         this.password = password;
         this.points = points;
         this.logIn = logIn;
+    }
+
+    public boolean login() {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Password: ");
+        if (scanner.next().equals(getPassword())) {
+            this.logIn = true;
+
+            return true;
+        }
+        return false;
     }
 
     public String getName() {
