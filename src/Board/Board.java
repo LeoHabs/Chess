@@ -107,7 +107,7 @@ public class Board {
     public static int getVertical(Piece piece){
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                    if(board[i][j].equals(piece)){
+                    if(board[i][j].getPiece().equals(piece)){
                         return i;
                 }
             }
@@ -120,7 +120,7 @@ public class Board {
     public static int getHorizontal(Piece piece){
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                if(board[i][j].equals(piece)){
+                if(board[i][j].getPiece().equals(piece)){
                     return j;
                 }
             }
