@@ -10,7 +10,6 @@ public class Board {
     private static Spot[][] board= new Spot[8][8];
 
 
-
     public static void createBoard(){
         buildBoardSpots();
         placeRooks();
