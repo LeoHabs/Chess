@@ -1,5 +1,7 @@
 package Board.Pieces;
 
+import Board.Board;
+
 public class Rook extends Piece{
 
     public Rook(String icon) {
@@ -17,5 +19,11 @@ public class Rook extends Piece{
     @Override
     public void movePiece(int vertical, int horizontal) {
 
+        int currentVertical = Board.getVertical(this);
+        int currentHorizontal = Board.getHorizontal(this);
+
+        if (vertical == currentVertical + vertical || horizontal == currentHorizontal + horizontal) {
+            Board.movePiece(this, horizontal, vertical);
+        }
     }
 }
