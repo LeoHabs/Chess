@@ -1,6 +1,6 @@
 package User;
 
-import Board.Board;
+import Game.Board.Pieces.Board;
 
 
 import java.util.Scanner;

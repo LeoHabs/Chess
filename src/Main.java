@@ -1,12 +1,9 @@
-import Board.Board;
-import User.LogIn;
-import User.RegisteUser;
-import Menu.Menu;
-
-import java.awt.*;
+import Game.Board.Pieces.Board;
 
 public class Main {
     public static void main(String[] args) {
+        Board.createBoard();
+        Board.printBoard();
 
     }
 

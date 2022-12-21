@@ -1,6 +1,4 @@
-package Board.Pieces;
-
-import Board.Board;
+package Game.Board.Pieces;
 
 public class King extends Piece {
     public King(String icon) {

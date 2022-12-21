@@ -1,4 +1,4 @@
-package Board.Pieces;
+package Game.Board.Pieces;
 
 public class Queen extends Piece{
     public Queen( String icon) {

@@ -1,4 +1,4 @@
-package Board.Pieces;
+package Game.Board.Pieces;
 
 public class Rook extends Piece{
 

@@ -1,5 +1,5 @@
-package Board;
-import Board.Pieces.Piece;
+package Game;
+import Game.Board.Pieces.Board.Pieces.Piece;
 
 public class Spot {
     private String spotColor;
