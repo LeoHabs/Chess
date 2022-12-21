@@ -1,5 +1,7 @@
 package Game.Board.Pieces;
 
+import Game.Game;
+
 public class Knight extends Piece {
     public Knight(String icon) {
         super("Knight", icon, 3);
@@ -51,4 +53,6 @@ public class Knight extends Piece {
         }
         System.out.println("Illegal move!");
     }
+
+
 }
