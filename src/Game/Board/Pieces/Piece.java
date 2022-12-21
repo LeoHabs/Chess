@@ -5,8 +5,6 @@ public abstract class Piece{
     private String icon;
     private int points;
 
-
-
     public Piece(String name, String icon, int points) {
         this.name = name;
         this.icon = icon;
