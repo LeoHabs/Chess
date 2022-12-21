@@ -14,6 +14,9 @@ public abstract class Piece{
     }
 
     public abstract void movePiece(int vertical, int horizontal);
+
+    public abstract void capturePiece();
+
     public String getIcon() {
         return icon;
     }

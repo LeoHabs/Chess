@@ -1,5 +1,5 @@
 package Game.Player;
-import Game.Board.Pieces.Board.Pieces.Piece;
+import Game.Board.Pieces.*;
 import User.Users;
 import java.util.ArrayList;
 
