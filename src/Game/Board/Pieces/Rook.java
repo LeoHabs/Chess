@@ -42,7 +42,6 @@ public class Rook extends Piece {
         }
 
         //horizontal
-
         for (int i = currentVertical - 1; i >= vertical; i--) {
             if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
                 System.out.println("There is something blocking the path!");
@@ -58,7 +57,7 @@ public class Rook extends Piece {
                 System.out.println("There is something blocking the path!");
                 return;
             }
-            if (vertical == currentVertical - i && horizontal == currentHorizontal) {
+            if (vertical == currentVertical + i && horizontal == currentHorizontal) {
                 Board.movePiece(this, horizontal, vertical);
             }
         }

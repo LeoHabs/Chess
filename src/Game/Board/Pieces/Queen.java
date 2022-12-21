@@ -61,7 +61,7 @@ public class Queen extends Piece {
                 System.out.println("There is something blocking the path!");
                 return;
             }
-            if (vertical == currentVertical - i && horizontal == currentHorizontal) {
+            if (vertical == currentVertical + i && horizontal == currentHorizontal) {
                 Board.movePiece(this, horizontal, vertical);
             }
         }
