@@ -1,11 +1,9 @@
-package Board.Pieces;
+package Game.Board.Pieces;
 
 public abstract class Piece{
     private String name;
     private String icon;
     private int points;
-
-
 
     public Piece(String name, String icon, int points) {
         this.name = name;
@@ -14,6 +12,9 @@ public abstract class Piece{
     }
 
     public abstract void movePiece(int vertical, int horizontal);
+
+    public abstract void capturePiece();
+
     public String getIcon() {
         return icon;
     }

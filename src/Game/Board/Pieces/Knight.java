@@ -1,6 +1,6 @@
-package Board.Pieces;
+package Game.Board.Pieces;
 
-import Board.Board;
+import Game.Game;
 
 public class Knight extends Piece {
     public Knight(String icon) {
@@ -53,4 +53,6 @@ public class Knight extends Piece {
         }
         System.out.println("Illegal move!");
     }
+
+
 }

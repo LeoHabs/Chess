@@ -1,6 +1,4 @@
-package Board.Pieces;
-
-import Board.Board;
+package Game.Board.Pieces;
 
 public class King extends Piece {
     public King(String icon) {
@@ -15,6 +13,7 @@ public class King extends Piece {
         return new King("♚");
     }
 
+    @Override
     public void movePiece(int vertical, int horizontal) {
         int currentVertical = Board.getVertical(this);
         int currentHorizontal = Board.getHorizontal(this);
