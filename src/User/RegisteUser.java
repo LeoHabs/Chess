@@ -20,8 +20,9 @@ public class RegisteUser {
             }
             break;
         }
-        try {
-            while (true) {
+        while (true) {
+
+            try {
                 System.out.print("Age: ");
                 user.setAge(scanner.nextInt());
                 if (user.getAge() < 10) {
@@ -29,7 +30,10 @@ public class RegisteUser {
                     continue;
                 }
                 break;
+            } catch (Exception e) {
+                System.out.println("\033[0;31m" + "Not recognise the number." + "\033[39m" + "\033[49m");
             }
+
         } catch (Exception e) {
             System.out.println("\033[0;31m" + "Number not recognized." + "\033[39m" + "\033[49m");
         }
