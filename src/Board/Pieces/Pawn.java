@@ -39,6 +39,7 @@ public class Pawn extends  Piece {
             if (vertical == currentVertical + 1) {
                 Board.movePiece(this, horizontal, vertical);
             }
+            System.out.println("Illegal move!");
         }
     }
 }

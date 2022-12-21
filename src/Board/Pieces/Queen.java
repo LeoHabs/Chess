@@ -71,7 +71,7 @@ public class Queen extends Piece {
 
         for (int i = currentVertical; i >= vertical; i--) {
             for (int j = currentHorizontal - 1; j >= horizontal; j--) {
-                if (Board.getBoard()[i][currentHorizontal].getPiece() != null && Board.getBoard()[currentVertical][j].getPiece() != null) {
+                if (Board.getBoard()[i][j].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
                     return;
                 }
@@ -81,12 +81,13 @@ public class Queen extends Piece {
 
         for (int i = currentVertical; i <= vertical; i++) {
             for (int j = currentHorizontal - 1; j <= horizontal; j++) {
-                if (Board.getBoard()[i][currentHorizontal].getPiece() != null && Board.getBoard()[currentVertical][j].getPiece() != null) {
+                if (Board.getBoard()[i][j].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
                     return;
                 }
                 Board.movePiece(this, horizontal, vertical);
             }
         }
+        System.out.println("Illegal move!");
     }
 }

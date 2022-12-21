@@ -70,5 +70,6 @@ public class Rook extends Piece {
         if (horizontal == currentHorizontal && vertical == currentHorizontal + vertical) {
             Board.movePiece(this, horizontal, vertical);
         }
+        System.out.println("Illegal move!");
     }
 }
