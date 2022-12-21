@@ -15,7 +15,7 @@ public class RegisteUser {
             System.out.print("User Name: ");
             user.setUserName(scanner.next());
             if (Checkers.checkUser(user)) {
-                System.out.println("\033[0;31m" + "Its already exist this user name." + "\033[39m" + "\033[49m");
+                System.out.println("\033[0;31m" + "Username already exists" + "\033[39m" + "\033[49m");
                 continue;
             }
             break;
@@ -25,13 +25,13 @@ public class RegisteUser {
                 System.out.print("Age: ");
                 user.setAge(scanner.nextInt());
                 if (user.getAge() < 10) {
-                    System.out.println("\033[0;31m" + "You need to have 10 years." + "\033[39m" + "\033[49m");
+                    System.out.println("\033[0;31m" + "You need to be 10 years old to register." + "\033[39m" + "\033[49m");
                     continue;
                 }
                 break;
             }
         } catch (Exception e) {
-            System.out.println("\033[0;31m" + "Not recognise the number." + "\033[39m" + "\033[49m");
+            System.out.println("\033[0;31m" + "Number not recognized." + "\033[39m" + "\033[49m");
         }
 
 
@@ -42,7 +42,7 @@ public class RegisteUser {
                 user.setEmail(email);
                 break;
             }
-            System.out.println("\033[0;31m" + "Your email need had @ and ." + "\033[39m" + "\033[49m");
+            System.out.println("\033[0;31m" + "Your email needs to have a \"@\" and a \".\"" + "\033[39m" + "\033[49m");
 
         }
 
@@ -55,9 +55,9 @@ public class RegisteUser {
                 break;
             }
 
-            System.out.println("\033[0;31m" + "Your password need:" +
+            System.out.println("\033[0;31m" + "Your password needs:" +
                     "Letters Uppercase and Lowercase " +
-                    "Special charters " +
+                    "Special characters " +
                     "Numbers " + "\033[39m" + "\033[49m");
         }
         DataBase.users.add(user);
