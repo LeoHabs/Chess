@@ -19,7 +19,6 @@ public class Queen extends Piece {
     @Override
     public void movePiece(int vertical, int horizontal) {
 
-        if (checkCapturePiece(Board.getBoard()[vertical][horizontal].getPiece())) {
 
             int currentVertical = Board.getVertical(this);
             int currentHorizontal = Board.getHorizontal(this);
@@ -95,6 +94,5 @@ public class Queen extends Piece {
                 }
             }
             System.out.println("Illegal move!");
-        }
     }
 }

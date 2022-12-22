@@ -35,21 +35,31 @@ public abstract class Piece{
 
     public void capturePiece(Piece otherPiece){
         Player ownTeam = null;
+        Player otherTeam = null;
         if(Game.getWhitePlayer().getPlayerPieces().contains(this)){
             ownTeam = Game.getWhitePlayer();
-
+            otherTeam = Game.getBlackPlayer();
         }else{
             ownTeam = Game.getBlackPlayer();
-
+            otherTeam = Game.getWhitePlayer();
         }
 
         Board.removePiece(otherPiece);
         ownTeam.getCapturedPieces().add(otherPiece);
         ownTeam.addPoints(otherPiece.points);
+        otherTeam.getPlayerPieces().remove(otherPiece);
     }
 
     public String getIcon() {
         return icon;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPoints() {
+        return points;
     }
 
 }
