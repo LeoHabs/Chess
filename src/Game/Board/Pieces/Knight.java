@@ -16,42 +16,52 @@ public class Knight extends Piece {
     }
 
     public void movePiece(int vertical, int horizontal) {
-        int currentVertical = Board.getVertical(this);
-        int currentHorizontal = Board.getHorizontal(this);
+        if (checkCapturePiece(Board.getBoard()[vertical][horizontal].getPiece())) {
+            int currentVertical = Board.getVertical(this);
+            int currentHorizontal = Board.getHorizontal(this);
 
-        if (vertical == currentVertical - 2 && horizontal == currentHorizontal - 1) {
-            Board.movePiece(this, horizontal, vertical);
-            return;
+            if (vertical == currentVertical - 2 && horizontal == currentHorizontal - 1) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+                return;
+            }
+            if (vertical == currentVertical - 1 && horizontal == currentHorizontal - 2) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+                return;
+            }
+            if (vertical == currentVertical + 1 && horizontal == currentHorizontal - 2) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+                return;
+            }
+            if (vertical == currentVertical + 2 && horizontal == currentHorizontal - 1) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+                return;
+            }
+            if (vertical == currentVertical + 2 && horizontal == currentHorizontal + 1) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+                return;
+            }
+            if (vertical == currentVertical + 1 && horizontal == currentHorizontal + 2) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+                return;
+            }
+            if (vertical == currentVertical - 1 && horizontal == currentHorizontal + 2) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+                return;
+            }
+            if (vertical == currentVertical - 2 && horizontal == currentHorizontal + 1) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+                return;
+            }
+            System.out.println("Illegal move!");
         }
-        if (vertical == currentVertical - 1 && horizontal == currentHorizontal - 2) {
-            Board.movePiece(this, horizontal, vertical);
-            return;
-        }
-        if (vertical == currentVertical + 1 && horizontal == currentHorizontal - 2) {
-            Board.movePiece(this, horizontal, vertical);
-            return;
-        }
-        if (vertical == currentVertical + 2 && horizontal == currentHorizontal - 1) {
-            Board.movePiece(this, horizontal, vertical);
-            return;
-        }
-        if (vertical == currentVertical + 2 && horizontal == currentHorizontal + 1) {
-            Board.movePiece(this, horizontal, vertical);
-            return;
-        }
-        if (vertical == currentVertical + 1 && horizontal == currentHorizontal + 2) {
-            Board.movePiece(this, horizontal, vertical);
-            return;
-        }
-        if (vertical == currentVertical - 1 && horizontal == currentHorizontal + 2) {
-            Board.movePiece(this, horizontal, vertical);
-            return;
-        }
-        if (vertical == currentVertical - 2 && horizontal == currentHorizontal + 1) {
-            Board.movePiece(this, horizontal, vertical);
-            return;
-        }
-        System.out.println("Illegal move!");
     }
 
 

@@ -1,9 +1,8 @@
 package Game.Board.Pieces;
-
-
-import Game.Board.Pieces.Board.Pieces.*;
 import Game.Game;
 import Game.Spot;
+
+import java.util.Arrays;
 
 public class Board {
     private static Spot[][] board = new Spot[8][8];
@@ -182,4 +181,15 @@ public class Board {
         board[getVertical(piece)][getHorizontal(piece)].setPiece(null);
         board[vertical][horizontal].setPiece(piece);
     }
+
+    public static void removePiece(Piece piece){
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+               if(board[i][j].getPiece().equals(piece)){
+                   board[i][j].setPiece(null);
+               }
+            }
+        }
+    }
+
 }
