@@ -14,66 +14,72 @@ public class Bishop extends Piece {
     }
 
     public void movePiece(int vertical, int horizontal) {
-        int currentVertical = Board.getVertical(this);
-        int currentHorizontal = Board.getHorizontal(this);
+        if(checkCapturePiece(Board.getBoard()[vertical][horizontal].getPiece())) {
+            int currentVertical = Board.getVertical(this);
+            int currentHorizontal = Board.getHorizontal(this);
 
-        if(!(Math.abs(currentVertical - vertical) == Math.abs(currentHorizontal-horizontal))){
-            System.out.println("Illegal movement");
-            return;
-        }
 
-        //Diagonal para o lado superior direito
-        if(currentVertical - vertical == -(currentHorizontal - horizontal)) {
-            int saverDiagRight = currentHorizontal + 1;
-            for (int i = currentVertical - 1; i >= vertical; i--) {
-                if (Board.getBoard()[i][saverDiagRight].getPiece() != null) {
-                    System.out.println("There is something blocking the path!");
-                    return;
-                }
-                saverDiagRight++;
+            if (!(Math.abs(currentVertical - vertical) == Math.abs(currentHorizontal - horizontal))) {
+                System.out.println("Illegal movement");
+                return;
             }
-            Board.movePiece(this, horizontal, vertical);
-        }
 
-        //Diagonal para o lado superior esquerdo
-        if(currentVertical - vertical == currentHorizontal - horizontal) {
-            int saverDiagLeft = currentHorizontal - 1;
-            for (int i = currentVertical - 1; i >= vertical; i--) {
-                if (Board.getBoard()[i][saverDiagLeft].getPiece() != null) {
-                    System.out.println("There is something blocking the path!");
-                    return;
+            //Diagonal para o lado superior direito
+            if (currentVertical - vertical == -(currentHorizontal - horizontal)) {
+                int saverDiagRight = currentHorizontal + 1;
+                for (int i = currentVertical - 1; i >= vertical; i--) {
+                    if (Board.getBoard()[i][saverDiagRight].getPiece() != null) {
+                        System.out.println("There is something blocking the path!");
+                        return;
+                    }
+                    saverDiagRight++;
                 }
-                saverDiagLeft--;
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
             }
-            Board.movePiece(this, horizontal, vertical);
-        }
 
-        //Diagonal para o lado inferior direito
-        if(-(currentVertical -vertical) == -(currentHorizontal - horizontal)) {
-            int saverDiagRDwn = currentHorizontal + 1;
-            for (int i = currentVertical + 1; i >= vertical; i++) {
-                if (Board.getBoard()[i][saverDiagRDwn].getPiece() != null) {
-                    System.out.println("There is something blocking the path!");
-                    return;
+            //Diagonal para o lado superior esquerdo
+            if (currentVertical - vertical == currentHorizontal - horizontal) {
+                int saverDiagLeft = currentHorizontal - 1;
+                for (int i = currentVertical - 1; i >= vertical; i--) {
+                    if (Board.getBoard()[i][saverDiagLeft].getPiece() != null) {
+                        System.out.println("There is something blocking the path!");
+                        return;
+                    }
+                    saverDiagLeft--;
                 }
-                saverDiagRDwn++;
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
             }
-            Board.movePiece(this, horizontal, vertical);
-        }
 
-        //Diagonal para o lado superior esquerdo
-        if(-(currentVertical -vertical) == currentHorizontal  - horizontal) {
-            int saverDiagLDwn = currentHorizontal - 1;
-            for (int i = currentVertical + 1; i >= vertical; i++) {
-                if (Board.getBoard()[i][saverDiagLDwn].getPiece() != null) {
-                    System.out.println("There is something blocking the path!");
-                    return;
+            //Diagonal para o lado inferior direito
+            if (-(currentVertical - vertical) == -(currentHorizontal - horizontal)) {
+                int saverDiagRDwn = currentHorizontal + 1;
+                for (int i = currentVertical + 1; i >= vertical; i++) {
+                    if (Board.getBoard()[i][saverDiagRDwn].getPiece() != null) {
+                        System.out.println("There is something blocking the path!");
+                        return;
+                    }
+                    saverDiagRDwn++;
                 }
-                saverDiagLDwn++;
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
             }
-            Board.movePiece(this, horizontal, vertical);
-        }
 
+            //Diagonal para o lado superior esquerdo
+            if (-(currentVertical - vertical) == currentHorizontal - horizontal) {
+                int saverDiagLDwn = currentHorizontal - 1;
+                for (int i = currentVertical + 1; i >= vertical; i++) {
+                    if (Board.getBoard()[i][saverDiagLDwn].getPiece() != null) {
+                        System.out.println("There is something blocking the path!");
+                        return;
+                    }
+                    saverDiagLDwn++;
+                }
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, horizontal, vertical);
+            }
+        }
     }
     
 }

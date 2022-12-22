@@ -1,7 +1,5 @@
 package Game.Board.Pieces;
 
-import Board.Board;
-
 public class Rook extends Piece {
 
     public Rook(String icon) {
