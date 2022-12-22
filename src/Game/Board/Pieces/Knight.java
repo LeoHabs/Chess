@@ -16,7 +16,7 @@ public class Knight extends Piece {
     }
 
     public void movePiece(int vertical, int horizontal) {
-        if (checkCapturePiece(Board.getBoard()[vertical][horizontal].getPiece())) {
+
             int currentVertical = Board.getVertical(this);
             int currentHorizontal = Board.getHorizontal(this);
 
@@ -61,7 +61,7 @@ public class Knight extends Piece {
                 return;
             }
             System.out.println("Illegal move!");
-        }
+
     }
 
 

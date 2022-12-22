@@ -1,5 +1,6 @@
 package Game.Board.Pieces;
 import Game.Game;
+import Game.Player.Player;
 import Game.Spot;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class Board {
     }
 
     public static void printBoard() {
+        printCaptured(Game.getWhitePlayer());
         System.out.print("\033[1;37m");
         System.out.println("   A  B  C  D  E  F  G  H");
         System.out.print("\033[0m");
@@ -32,6 +34,8 @@ public class Board {
                 }
             }
         }
+        System.out.println();
+        printCaptured(Game.getBlackPlayer());
     }
 
     public static void placePawns() {
@@ -177,7 +181,30 @@ public class Board {
         return 0;
     }
 
-    public static void movePiece(Piece piece, int horizontal, int vertical) {
+    public static int letterToInt(String letter) {
+        switch (letter.toUpperCase()){
+            case "A":
+                return 0;
+            case "B":
+                return 1;
+            case "C":
+                return 2;
+            case "D":
+                return 3;
+            case "E":
+                return 4;
+            case "F":
+                return 5;
+            case "G":
+                return 6;
+            case "H":
+                return 7;
+            default:
+                return 8;
+        }
+    }
+
+    public static void movePiece(Piece piece,int horizontal, int vertical) {
         board[getVertical(piece)][getHorizontal(piece)].setPiece(null);
         board[vertical][horizontal].setPiece(piece);
     }
@@ -190,6 +217,19 @@ public class Board {
                }
             }
         }
+    }
+
+    public static void printCaptured(Player player){
+        System.out.println("  -----------------------");
+        System.out.print("   ");
+        for (int i = 0; i <player.getCapturedPieces().size(); i++) {
+            System.out.print(player.getCapturedPieces().get(i).getIcon()+" ");
+            if(i==8){
+                System.out.println();
+            }
+        }
+        System.out.println();
+        System.out.println("  -----------------------");
     }
 
 }
