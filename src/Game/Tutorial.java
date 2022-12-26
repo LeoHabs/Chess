@@ -143,6 +143,6 @@ public class Tutorial {
         Board.getBoard()[3][5] = new Spot("\u001B[45m", null);
         board3.printBoard();
         System.out.println("\u001B[35m" + "Movement rules:" + "\u001B[0m");
-        System.out.println("The king can only move (or capture) one square in any direction");
+        System.out.println("The king can only move one square in any direction");
     }
 }
