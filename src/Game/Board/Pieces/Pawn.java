@@ -1,8 +1,11 @@
 package Game.Board.Pieces;
 
 
+import Game.Game;
 
-public class Pawn extends  Piece {
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
+public class Pawn extends Piece {
 
     private boolean isFirstMove = true;
 
@@ -19,29 +22,57 @@ public class Pawn extends  Piece {
     }
 
     @Override
-    public void movePiece(int vertical, int horizontal) {
-            int currentVertical = Board.getVertical(this);
-            int currentHorizontal = Board.getHorizontal(this);
+    public boolean movePiece(int vertical, int horizontal) {
+        int currentVertical = Board.getVertical(this);
+        int currentHorizontal = Board.getHorizontal(this);
 
+        if (Board.getBoard()[vertical][horizontal].getPiece() == null) {
             if (isFirstMove) {
-                if (vertical == currentVertical - 2 && currentHorizontal == horizontal || vertical == currentVertical - 1 && currentHorizontal == horizontal) {
-                    this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
-                    Board.movePiece(this, horizontal, vertical);
-                }
-                if (vertical == currentVertical + 2 && currentHorizontal == horizontal || vertical == currentVertical + 1 && currentHorizontal == horizontal) {
-                    this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
-                    Board.movePiece(this, horizontal, vertical);
+                if (Game.getWhitePlayer().getPlayerPieces().contains(this)) {
+                    if (vertical == currentVertical - 2) {
+                        Board.movePiece(this, horizontal, vertical);
+                        isFirstMove = false;
+                        return true;
+                    }
+                    if (vertical == currentVertical - 1) {
+                        Board.movePiece(this, horizontal, vertical);
+                        isFirstMove = false;
+                        return true;
+                    }
+                } else {
+                    if (vertical == currentVertical + 2 && currentHorizontal == horizontal) {
+                        Board.movePiece(this, horizontal, vertical);
+                        isFirstMove = false;
+                        return true;
+                    }
+                    if (vertical == currentVertical + 1 && currentHorizontal == horizontal) {
+                        Board.movePiece(this, horizontal, vertical);
+                        isFirstMove = false;
+                        return true;
+                    }
                 }
             } else {
-                if (vertical == currentVertical - 1 && currentHorizontal == horizontal) {
-                    this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
-                    Board.movePiece(this, horizontal, vertical);
-                }
-                if (vertical == currentVertical + 1 && currentHorizontal == horizontal) {
-                    this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
-                    Board.movePiece(this, horizontal, vertical);
+                if (Game.getWhitePlayer().getPlayerPieces().contains(this)) {
+                    if (vertical == currentVertical - 1 && currentHorizontal == horizontal) {
+                        Board.movePiece(this, horizontal, vertical);
+                        return true;
+                    }
+                    if (vertical == currentVertical + 1 && currentHorizontal == horizontal) {
+                        Board.movePiece(this, horizontal, vertical);
+                        return true;
+                    }
                 }
             }
-            System.out.println("Illegal move!");
+        }
+        if (Board.getBoard()[vertical][horizontal].getPiece() != null) {
+            if (Math.abs(currentVertical - vertical) == 1 && Math.abs(currentHorizontal - horizontal) == 1 && Math.abs(currentVertical - vertical) == Math.abs(currentHorizontal - horizontal)) {
+                this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+                Board.movePiece(this, vertical, horizontal);
+                return true;
+            }
+        }
+        System.out.println("Illegal move!");
+        return false;
     }
+
 }

@@ -17,7 +17,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public void movePiece(int vertical, int horizontal) {
+    public boolean movePiece(int vertical, int horizontal) {
 
 
             int currentVertical = Board.getVertical(this);
@@ -26,7 +26,7 @@ public class Queen extends Piece {
             for (int i = currentHorizontal - 1; i >= horizontal; i--) {
                 if (Board.getBoard()[currentVertical][i].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
-                    return;
+                    return false;
                 }
             }
 
@@ -38,48 +38,52 @@ public class Queen extends Piece {
             for (int i = currentHorizontal - 1; i <= horizontal; i++) {
                 if (Board.getBoard()[currentVertical][i].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
-                    return;
+                    return false;
                 }
             }
 
             if (vertical == currentVertical && horizontal == currentHorizontal + horizontal) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
+                return true;
             }
 
             //check horizontal
             for (int i = currentVertical - 1; i >= vertical; i--) {
                 if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
-                    return;
+                    return false;
                 }
             }
 
             if (horizontal == currentHorizontal && vertical == currentHorizontal - vertical) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
+                return true;
             }
 
             for (int i = currentVertical - 1; i <= vertical; i++) {
                 if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
-                    return;
+                    return false;
                 }
             }
 
             if (horizontal == currentHorizontal && vertical == currentHorizontal + vertical) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
+                return true;
             }
 
             for (int i = currentVertical; i >= vertical; i--) {
                 for (int j = currentHorizontal - 1; j >= horizontal; j--) {
                     if (Board.getBoard()[i][j].getPiece() != null) {
                         System.out.println("There is something blocking the path!");
-                        return;
+                        return false;
                     }
                     this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                     Board.movePiece(this, horizontal, vertical);
+                    return true;
                 }
             }
 
@@ -87,12 +91,14 @@ public class Queen extends Piece {
                 for (int j = currentHorizontal - 1; j <= horizontal; j++) {
                     if (Board.getBoard()[i][j].getPiece() != null) {
                         System.out.println("There is something blocking the path!");
-                        return;
+                        return false;
                     }
                     this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                     Board.movePiece(this, horizontal, vertical);
+                    return true;
                 }
             }
             System.out.println("Illegal move!");
+            return false;
     }
 }

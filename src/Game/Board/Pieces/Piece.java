@@ -13,7 +13,7 @@ public abstract class Piece{
         this.points = points;
     }
 
-    public abstract void movePiece(int vertical, int horizontal);
+    public abstract boolean movePiece(int vertical, int horizontal);
 
     public boolean checkCapturePiece(Piece otherPiece) {
         Player ownTeam = null;
@@ -34,6 +34,9 @@ public abstract class Piece{
     }
 
     public void capturePiece(Piece otherPiece){
+        if(otherPiece == null){
+            return;
+        }
         Player ownTeam = null;
         Player otherTeam = null;
         if(Game.getWhitePlayer().getPlayerPieces().contains(this)){
@@ -43,8 +46,6 @@ public abstract class Piece{
             ownTeam = Game.getBlackPlayer();
             otherTeam = Game.getWhitePlayer();
         }
-
-        Board.removePiece(otherPiece);
         ownTeam.getCapturedPieces().add(otherPiece);
         ownTeam.addPoints(otherPiece.points);
         otherTeam.getPlayerPieces().remove(otherPiece);
