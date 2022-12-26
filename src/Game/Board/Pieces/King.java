@@ -14,7 +14,7 @@ public class King extends Piece {
     }
 
     @Override
-    public void movePiece(int vertical, int horizontal) {
+    public boolean movePiece(int vertical, int horizontal) {
 
             int currentVertical = Board.getVertical(this);
             int currentHorizontal = Board.getHorizontal(this);
@@ -22,39 +22,40 @@ public class King extends Piece {
             if (horizontal == currentHorizontal - 1 && vertical == currentVertical) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                return;
+                return true;
             }
             if (horizontal == currentHorizontal - 1 && vertical == currentVertical + 1) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                return;
+                return true;
             }
             if (horizontal == currentHorizontal && vertical == currentVertical + 1) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                return;
+                return true;
             }
             if (horizontal == currentHorizontal + 1 && vertical == currentVertical + 1) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                return;
+                return true;
             }
             if (horizontal == currentHorizontal + 1 && vertical == currentVertical) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                return;
+                return true;
             }
             if (horizontal == currentHorizontal + 1 && vertical == currentVertical - 1) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                return;
+                return true;
             }
             if (horizontal == currentHorizontal - 1 && vertical == currentVertical - 1) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                return;
+                return true;
             }
             System.out.println("Illegal move");
+            return false;
         }
 
 }

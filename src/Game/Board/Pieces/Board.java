@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class Board {
     private static Spot[][] board = new Spot[8][8];
 
+    private static String[] letters ={"A","B","C","D","E","F","G","H"};
 
     public static void createBoard() {
         buildBoardSpots();
@@ -21,11 +22,11 @@ public class Board {
     public static void printBoard() {
         printCaptured(Game.getWhitePlayer());
         System.out.print("\033[1;37m");
-        System.out.println("   A  B  C  D  E  F  G  H");
+        System.out.println("   1  2  3  4  5  6  7  8");
         System.out.print("\033[0m");
         for (int i = 0; i < board.length; i++) {
             System.out.print("\033[1;37m");
-            System.out.print(i + 1 + " ");
+            System.out.print(letters[i] + " ");
             System.out.print("\033[0m");
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j].printSpot();
@@ -209,15 +210,7 @@ public class Board {
         board[vertical][horizontal].setPiece(piece);
     }
 
-    public static void removePiece(Piece piece){
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-               if(board[i][j].getPiece().equals(piece)){
-                   board[i][j].setPiece(null);
-               }
-            }
-        }
-    }
+
 
     public static void printCaptured(Player player){
         System.out.println("  -----------------------");

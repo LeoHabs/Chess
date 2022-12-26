@@ -41,18 +41,24 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         System.out.print("From: ");
         String choiceFrom = scanner.next();
-        if (choiceFrom.length() > 2) {
+        if (choiceFrom.length() != 2) {
             System.out.println("Not a valid coordinate");
             return false;
         }
-        Piece pieceToMove = Board.getBoard()[Board.letterToInt(choiceFrom.substring(0, 1))][Integer.parseInt(choiceFrom.substring(1, 2))].getPiece();
+        Piece pieceToMove = Board.getBoard()[Board.letterToInt(choiceFrom.substring(0, 1))][Integer.parseInt(choiceFrom.substring(1, 2))-1].getPiece();
         if (player.getPlayerPieces().contains(pieceToMove)) {
-            System.out.println("To:");
+            System.out.print("To: ");
             String choiceTo = scanner.next();
-            Piece pieceToCapture = Board.getBoard()[Board.letterToInt(choiceTo.substring(0, 1))][Integer.parseInt(choiceTo.substring(1, 2))].getPiece();
+            if(choiceTo.length()!=2){
+                return false;
+            }
+            Piece pieceToCapture = Board.getBoard()[Board.letterToInt(choiceTo.substring(0, 1))][Integer.parseInt(choiceTo.substring(1, 2))-1].getPiece();
             if (pieceToMove.checkCapturePiece(pieceToCapture) || pieceToCapture == null) {
-                pieceToMove.movePiece(Board.letterToInt(choiceTo.substring(0, 1)),Integer.parseInt(choiceTo.substring(1, 2)));
-                return true;
+                if(pieceToMove.movePiece(Board.letterToInt(choiceTo.substring(0, 1)), Integer.parseInt(choiceTo.substring(1, 2)) - 1)){
+                    return true;
+                }else{
+                    return false;
+                }
             }
         } else {
             System.out.println("No piece of yours in that coordinate");
