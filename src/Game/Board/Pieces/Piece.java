@@ -46,6 +46,7 @@ public abstract class Piece{
             ownTeam = Game.getBlackPlayer();
             otherTeam = Game.getWhitePlayer();
         }
+        System.out.println("OUTRA PEÇA: "+ otherPiece.getIcon());
         ownTeam.getCapturedPieces().add(otherPiece);
         ownTeam.addPoints(otherPiece.points);
         otherTeam.getPlayerPieces().remove(otherPiece);

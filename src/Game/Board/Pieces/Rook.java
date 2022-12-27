@@ -19,55 +19,55 @@ public class Rook extends Piece {
         int currentVertical = Board.getVertical(this);
         int currentHorizontal = Board.getHorizontal(this);
 
-        //check vertical
-        for (int i = currentHorizontal - 1; i >= horizontal; i--) {
-            if (Board.getBoard()[currentVertical][i].getPiece() != null) {
+        //check vertical up
+        if (horizontal == currentHorizontal && vertical < currentVertical) {
+        for (int i = currentVertical - 1; i > vertical; i--) {
+            if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
                 System.out.println("There is something blocking the path!");
                 return false;
             }
         }
-
-        if (vertical == currentVertical && horizontal == currentHorizontal - horizontal) {
+            this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
             Board.movePiece(this, horizontal, vertical);
             return  true;
         }
 
+        //check vertical down
+        if (vertical > currentVertical && horizontal == currentHorizontal) {
+        for (int i=currentVertical +1; i < vertical ; i++) {
+            if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
+                System.out.println("There is something blocking the path!");
+                return false;
+            }
+        }
+            this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+            Board.movePiece(this, horizontal, vertical);
+            return true;
+        }
 
-        for (int i = currentHorizontal - 1; i <= horizontal; i++) {
+
+        //check horizontal right
+        if (vertical == currentVertical && currentHorizontal < horizontal) {
+        for (int i = currentHorizontal + 1; i < horizontal; i++) {
             if (Board.getBoard()[currentVertical][i].getPiece() != null) {
                 System.out.println("There is something blocking the path!");
                 return false;
             }
         }
-
-        if (vertical == currentVertical && horizontal == currentHorizontal + horizontal) {
+            this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
             Board.movePiece(this, horizontal, vertical);
             return true;
         }
 
-
-        //check horizontal
-        for (int i = currentVertical - 1; i >= vertical; i--) {
-            if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
+        //check horizontal left
+        if (vertical == currentVertical && currentHorizontal > horizontal) {
+        for (int i = currentHorizontal - 1; i > horizontal; i--) {
+            if (Board.getBoard()[currentVertical][i].getPiece() != null) {
                 System.out.println("There is something blocking the path!");
                 return false;
             }
         }
-
-        if (horizontal == currentHorizontal && vertical == currentHorizontal - vertical) {
-            Board.movePiece(this, horizontal, vertical);
-            return true;
-        }
-
-
-        for (int i = currentVertical - 1; i <= vertical; i++) {
-            if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
-                System.out.println("There is something blocking the path!");
-                return false;
-            }
-        }
-
-        if (horizontal == currentHorizontal && vertical == currentHorizontal + vertical) {
+            this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
             Board.movePiece(this, horizontal, vertical);
              return true;
         }

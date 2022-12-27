@@ -35,6 +35,7 @@ public class Bishop extends Piece {
                 }
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
+                return true;
             }
 
             //Diagonal para o lado superior esquerdo
@@ -49,6 +50,7 @@ public class Bishop extends Piece {
                 }
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
+                return true;
             }
 
             //Diagonal para o lado inferior direito
@@ -63,6 +65,7 @@ public class Bishop extends Piece {
                 }
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
+                return true;
             }
 
             //Diagonal para o lado superior esquerdo
@@ -77,8 +80,9 @@ public class Bishop extends Piece {
                 }
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
+                return true;
             }
-            return true;
+           return false;
     }
     
 }

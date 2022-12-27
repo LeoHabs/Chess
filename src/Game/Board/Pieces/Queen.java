@@ -23,7 +23,7 @@ public class Queen extends Piece {
             int currentVertical = Board.getVertical(this);
             int currentHorizontal = Board.getHorizontal(this);
 
-            for (int i = currentHorizontal - 1; i >= horizontal; i--) {
+            for (int i = currentHorizontal - 1; i > horizontal; i--) {
                 if (Board.getBoard()[currentVertical][i].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
                     return false;
@@ -35,7 +35,7 @@ public class Queen extends Piece {
                 Board.movePiece(this, horizontal, vertical);
             }
 
-            for (int i = currentHorizontal - 1; i <= horizontal; i++) {
+            for (int i = currentHorizontal - 1; i < horizontal; i++) {
                 if (Board.getBoard()[currentVertical][i].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
                     return false;
@@ -49,7 +49,7 @@ public class Queen extends Piece {
             }
 
             //check horizontal
-            for (int i = currentVertical - 1; i >= vertical; i--) {
+            for (int i = currentVertical - 1; i > vertical; i--) {
                 if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
                     return false;
@@ -62,7 +62,7 @@ public class Queen extends Piece {
                 return true;
             }
 
-            for (int i = currentVertical - 1; i <= vertical; i++) {
+            for (int i = currentVertical - 1; i < vertical; i++) {
                 if (Board.getBoard()[i][currentHorizontal].getPiece() != null) {
                     System.out.println("There is something blocking the path!");
                     return false;
@@ -75,7 +75,7 @@ public class Queen extends Piece {
                 return true;
             }
 
-            for (int i = currentVertical; i >= vertical; i--) {
+            for (int i = currentVertical; i > vertical; i--) {
                 for (int j = currentHorizontal - 1; j >= horizontal; j--) {
                     if (Board.getBoard()[i][j].getPiece() != null) {
                         System.out.println("There is something blocking the path!");
@@ -87,7 +87,7 @@ public class Queen extends Piece {
                 }
             }
 
-            for (int i = currentVertical; i <= vertical; i++) {
+            for (int i = currentVertical; i < vertical; i++) {
                 for (int j = currentHorizontal - 1; j <= horizontal; j++) {
                     if (Board.getBoard()[i][j].getPiece() != null) {
                         System.out.println("There is something blocking the path!");
