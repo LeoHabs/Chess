@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         Game.setWhitePlayer(new Player(new Users()));
         Game.setBlackPlayer(new Player(new Users()));
-       Game.gameScript();
+        Game.gameScript();
 
     }
 
