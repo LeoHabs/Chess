@@ -213,6 +213,9 @@ public class Board {
 
 
     public static void printCaptured(Player player){
+        if(player == null){
+            return;
+        }
         System.out.println("  -----------------------");
         System.out.print("   ");
         for (int i = 0; i <player.getCapturedPieces().size(); i++) {

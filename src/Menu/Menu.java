@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class Menu {
 
-
     public static void mainMenu(){
 
         Scanner sc = new Scanner(System.in);
@@ -20,29 +19,22 @@ public class Menu {
         System.out.println(" ③ \uD835\uDDDA\uD835\uDDEE\uD835\uDDFA\uD835\uDDF2");
         int option = sc.nextInt();
         switch (option){
-            case 1 -> Tutorial.showTutorial();
-            //case 2 ->
-            case 3 -> Game.gameScript();
-        }
-    }
-
-
-
-    public static void menuLoginRegister() {
-        Scanner scanner = new Scanner(System.in);
-        String choice = "";
-
-        while (!choice.equals("3")) {
-
-            System.out.println("1 -> Register:");
-            System.out.println("2 -> Log In:");
-            System.out.print("Choose option:");
-            choice = scanner.next();
-
-            switch (choice) {
-                case "1" -> RegisteUser.createUser();
-                case "2" -> LogIn.loginProcedure();
-            }
+            case 1:
+                Tutorial.showTutorial();
+                mainMenu();
+            break;
+            case 2 :
+                try{
+                    RegisteUser.createUser();
+                }catch (Exception e){
+                    System.out.println("Unable to register");
+                }
+                mainMenu();
+            break;
+            case 3 :
+                Game.gameScript();
+                mainMenu();
+                break;
         }
     }
 }

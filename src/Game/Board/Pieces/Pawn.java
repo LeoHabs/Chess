@@ -2,8 +2,12 @@ package Game.Board.Pieces;
 
 
 import Game.Game;
+import Game.Player.Player;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+import java.util.Vector;
 
 public class Pawn extends Piece {
 
@@ -68,6 +72,9 @@ public class Pawn extends Piece {
             if (Math.abs(currentVertical - vertical) == 1 && Math.abs(currentHorizontal - horizontal) == 1 && Math.abs(currentVertical - vertical) == Math.abs(currentHorizontal - horizontal)) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
+                if(vertical == 0 || vertical == 7) {
+                    Board.getBoard()[vertical][horizontal].setPiece(exchangePiece());
+                }
                 return true;
             }
         }
@@ -75,4 +82,30 @@ public class Pawn extends Piece {
         return false;
     }
 
+
+    public Piece exchangePiece(){
+            Player ownTeam = null;
+            Player otherTeam = null;
+            Piece promotedPiece = null;
+            while (true) {
+                if (Game.getWhitePlayer().getPlayerPieces().contains(this)) {
+                    ownTeam = Game.getWhitePlayer();
+                    otherTeam = Game.getBlackPlayer();
+                } else {
+                    ownTeam = Game.getBlackPlayer();
+                    otherTeam = Game.getWhitePlayer();
+                }
+                Scanner scanner = new Scanner(System.in);
+
+                System.out.println("What piece you want to promote to?: ");
+                String pieceName = scanner.next();
+                try {
+                    promotedPiece = otherTeam.getCapturedPieces().stream().filter(e -> e.getName().equals(pieceName)).findFirst().get();
+                    break;
+                }catch ( NoSuchElementException e){
+                    System.out.println("Piece hasn't been captured yet. Choose another piece!");
+                }
+            }
+            return promotedPiece;
+    }
 }

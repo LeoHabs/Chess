@@ -1,6 +1,7 @@
 package Game;
 
 import Game.Board.Pieces.*;
+import Menu.Menu;
 
 import java.util.Scanner;
 
