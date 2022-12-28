@@ -24,7 +24,7 @@ public class LogIn {
             String[] arrOfStr = line.split("\s");
             String password = scanner.next();
             if (password.equals(arrOfStr[4])) {
-                return new Users(arrOfStr[0], arrOfStr[1], arrOfStr[2], arrOfStr[3], arrOfStr[4]);
+                return new Users(arrOfStr[0], arrOfStr[1], arrOfStr[2], arrOfStr[3], arrOfStr[4],arrOfStr[5]);
             }
             System.out.println("Your username or password is wrong");
             br.close();

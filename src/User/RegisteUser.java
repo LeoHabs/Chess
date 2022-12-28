@@ -10,7 +10,6 @@ public class RegisteUser {
         Users user = new Users();
         File file = new File("src/User/File/Names");
         String filename = "src/User/File/Names";
-        BufferedReader br = new BufferedReader(new FileReader(file));
         FileWriter fw = new FileWriter(filename, true);
         String name = "";
         String userName = "";

@@ -6,6 +6,9 @@ import Game.Player.Player;
 import User.LogIn;
 import User.Users;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,8 +21,8 @@ public class Game {
         while (true) {
             try {
                 Game.setWhitePlayer(new Player(LogIn.loginProcedure()));
-                if(Game.getWhitePlayer() != null){
-                break;
+                if (Game.getWhitePlayer() != null) {
+                    break;
                 }
             } catch (java.io.IOException e) {
                 System.out.println("Couldn't login :(");
@@ -29,7 +32,7 @@ public class Game {
         while (true) {
             try {
                 Game.setBlackPlayer(new Player(LogIn.loginProcedure()));
-                if(Game.getWhitePlayer() != null){
+                if (Game.getWhitePlayer() != null) {
                     break;
                 }
                 break;
@@ -42,30 +45,49 @@ public class Game {
         Board.printBoard();
         Player winner = null;
         while (winner == null) {
-            while (true){
-                if(play(whitePlayer)){
+            while (true) {
+                if (play(whitePlayer)) {
                     break;
                 }
             }
             Board.printBoard();
-            while (true){
-                if(play(blackPlayer)){
+            while (true) {
+                if (play(blackPlayer)) {
                     break;
                 }
             }
             Board.printBoard();
             winner = endGame();
         }
-        Player looser = null;
-        if(winner.equals(Game.getWhitePlayer())){
-            looser = Game.getBlackPlayer();
-        }else{
-            looser = Game.getWhitePlayer();
+        Player loser = null;
+        if (winner.equals(Game.getWhitePlayer())) {
+            loser = Game.getBlackPlayer();
+        } else {
+            loser = Game.getWhitePlayer();
         }
 
         return winner;
     }
 
+    public static Users savePoints(Player player) throws IOException {
+        File file = new File("src/User/File/Names");
+        String filename = "src/User/File/Names";
+        FileWriter fw = new FileWriter(filename, true);
+        fw.write(counterPointsWinner(player.getPoints()));
+        fw.write(counterPointsLoser(player.getPoints()));
+        fw.close();
+        return null;
+    }
+
+    public static int counterPointsWinner(Player player) {
+
+        return 500 + Integer.parseInt(player.getPoints().toString());
+    }
+
+    public static int counterPointsLoser(Player player) {
+
+        return 200 + Integer.parseInt(player.getPoints().toString());
+    }
 
     public static boolean play(Player player) {
         Scanner scanner = new Scanner(System.in);
@@ -75,18 +97,18 @@ public class Game {
             System.out.println("Not a valid coordinate");
             return false;
         }
-        Piece pieceToMove = Board.getBoard()[Board.letterToInt(choiceFrom.substring(0, 1))][Integer.parseInt(choiceFrom.substring(1, 2))-1].getPiece();
+        Piece pieceToMove = Board.getBoard()[Board.letterToInt(choiceFrom.substring(0, 1))][Integer.parseInt(choiceFrom.substring(1, 2)) - 1].getPiece();
         if (player.getPlayerPieces().contains(pieceToMove)) {
             System.out.print("To: ");
             String choiceTo = scanner.next();
-            if(choiceTo.length()!=2){
+            if (choiceTo.length() != 2) {
                 return false;
             }
-            Piece pieceToCapture = Board.getBoard()[Board.letterToInt(choiceTo.substring(0, 1))][Integer.parseInt(choiceTo.substring(1, 2))-1].getPiece();
+            Piece pieceToCapture = Board.getBoard()[Board.letterToInt(choiceTo.substring(0, 1))][Integer.parseInt(choiceTo.substring(1, 2)) - 1].getPiece();
             if (pieceToMove.checkCapturePiece(pieceToCapture) || pieceToCapture == null) {
-                if(pieceToMove.movePiece(Board.letterToInt(choiceTo.substring(0, 1)), Integer.parseInt(choiceTo.substring(1, 2)) - 1)){
+                if (pieceToMove.movePiece(Board.letterToInt(choiceTo.substring(0, 1)), Integer.parseInt(choiceTo.substring(1, 2)) - 1)) {
                     return true;
-                }else{
+                } else {
                     return false;
                 }
             }

@@ -13,12 +13,13 @@ public class Users {
     private String points;
     private boolean logIn;
 
-    public Users(String userName, String name, String age, String email, String password) {
+    public Users(String userName, String name, String age, String email, String password, String points) {
         this.name = name;
         this.userName = userName;
         this.age = age;
         this.email = email;
         this.password = password;
+        this.points = points;
     }
 
     public Users() {
