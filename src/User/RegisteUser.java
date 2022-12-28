@@ -8,8 +8,8 @@ public class RegisteUser {
     public static void createUser() throws IOException {
         Scanner scanner = new Scanner(System.in);
         Users user = new Users();
-        File file = new File("/Users/pedrooliveira/Desktop/Io/src/Register.txt");
-        String filename = "/Users/pedrooliveira/Desktop/Io/src/Register.txt";
+        File file = new File("src/User/File/Names");
+        String filename = "src/User/File/Names";
         BufferedReader br = new BufferedReader(new FileReader(file));
         FileWriter fw = new FileWriter(filename, true);
         String name = "";
@@ -17,11 +17,7 @@ public class RegisteUser {
         String age = "";
         String password = "";
         String email = "";
-        while (br.readLine() != null) {
-
-        }
-
-
+        fw.write("\n");
         while (true) {
             System.out.print("User Name: ");
             userName = scanner.next();
@@ -40,6 +36,7 @@ public class RegisteUser {
 
         System.out.print("Age: ");
         age = scanner.next();
+        fw.write(age+" ");
         user.setAge(age);
 
 
@@ -47,7 +44,7 @@ public class RegisteUser {
             System.out.print("Email: ");
             email = scanner.next();
             if (Checkers.emailValid(email)) {
-                fw.write(email);
+                fw.write(email +" ");
                 user.setEmail(email);
                 break;
             }
@@ -75,7 +72,7 @@ public class RegisteUser {
         System.out.println("Age: " + user.getAge());
         System.out.println("Email: " + user.getEmail());
         System.out.println("Password: " + user.getPassword());
-
+        fw.close();
     }
 
 }

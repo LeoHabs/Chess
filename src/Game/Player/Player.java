@@ -14,6 +14,7 @@ public class Player {
         this.user = user;
     }
 
+
     public void addPoints(int points){
         this.points+=points;
     }
@@ -26,4 +27,7 @@ public class Player {
         return playerPieces;
     }
 
+    public int getPoints() {
+        return points;
+    }
 }

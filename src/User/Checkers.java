@@ -30,12 +30,4 @@ public class Checkers {
         return false;
     }
 
-    public static boolean checkAge(Users age) {
-        for (Users eachAge : DataBase.users) {
-            if (eachAge.getAge() > age.getAge()) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

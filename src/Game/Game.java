@@ -3,6 +3,7 @@ package Game;
 import Game.Board.Pieces.Board;
 import Game.Board.Pieces.Piece;
 import Game.Player.Player;
+import User.LogIn;
 import User.Users;
 
 import java.util.ArrayList;
@@ -12,9 +13,31 @@ public class Game {
     private static Player whitePlayer;
     private static Player blackPlayer;
 
-
-    //Falta escolher quem é quem
     public static Player gameScript() {
+        System.out.println("White Player: ");
+        while (true) {
+            try {
+                Game.setWhitePlayer(new Player(LogIn.loginProcedure()));
+                if(Game.getWhitePlayer() != null){
+                break;
+                }
+            } catch (java.io.IOException e) {
+                System.out.println("Couldn't login :(");
+            }
+        }
+        System.out.println("Black Player");
+        while (true) {
+            try {
+                Game.setBlackPlayer(new Player(LogIn.loginProcedure()));
+                if(Game.getWhitePlayer() != null){
+                    break;
+                }
+                break;
+            } catch (java.io.IOException e) {
+                System.out.println("Couldn't login :(");
+            }
+        }
+
         Board.createBoard();
         Board.printBoard();
         Player winner = null;
@@ -33,6 +56,13 @@ public class Game {
             Board.printBoard();
             winner = endGame();
         }
+        Player looser = null;
+        if(winner.equals(Game.getWhitePlayer())){
+            looser = Game.getBlackPlayer();
+        }else{
+            looser = Game.getWhitePlayer();
+        }
+
         return winner;
     }
 
