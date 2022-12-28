@@ -6,9 +6,7 @@ import Game.Player.Player;
 import User.LogIn;
 import User.Users;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,24 +67,27 @@ public class Game {
         return winner;
     }
 
-    public static Users savePoints(Player player) throws IOException {
+    public static Users savePoints() throws IOException {
+
         File file = new File("src/User/File/Names");
         String filename = "src/User/File/Names";
         FileWriter fw = new FileWriter(filename, true);
-        fw.write(counterPointsWinner(player.getPoints()));
-        fw.write(counterPointsLoser(player.getPoints()));
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        fw.write(counterPointsLoser(Game.getWhitePlayer()));
+        fw.write(counterPointsWinner(Game.getWhitePlayer()));
         fw.close();
         return null;
     }
 
     public static int counterPointsWinner(Player player) {
 
-        return 500 + Integer.parseInt(player.getPoints().toString());
+        return 500 + player.getPoints();
     }
 
     public static int counterPointsLoser(Player player) {
 
-        return 200 + Integer.parseInt(player.getPoints().toString());
+        return 200 + player.getPoints();
     }
 
     public static boolean play(Player player) {

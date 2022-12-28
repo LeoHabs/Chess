@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Player {
     private Users user;
 
-    private Player points;
+    private int points;
     private ArrayList<Piece> playerPieces = new ArrayList<>();
     private ArrayList<Piece> capturedPieces = new ArrayList<>();
 
@@ -15,7 +15,7 @@ public class Player {
     }
 
 
-    public void addPoints(Player points){
+    public void addPoints(int points){
         this.points =points;
     }
 
@@ -27,7 +27,7 @@ public class Player {
         return playerPieces;
     }
 
-    public Player getPoints() {
+    public int getPoints() {
         return points;
     }
 }
