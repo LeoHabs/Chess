@@ -6,25 +6,23 @@ public class Users {
 
     private String name;
     private String userName;
-    private int age;
+    private String age;
     private String email;
     private String password;
 
     private String points;
     private boolean logIn;
 
-    public Users() {
-
-    }
-
-    public Users(String name, String userName, int age, String email, String password, String points, boolean logIn) {
+    public Users(String userName, String name, String age, String email, String password) {
         this.name = name;
         this.userName = userName;
         this.age = age;
         this.email = email;
         this.password = password;
-        this.points = points;
-        this.logIn = logIn;
+    }
+
+    public Users() {
+
     }
 
     public boolean login() {
@@ -55,11 +53,11 @@ public class Users {
         this.userName = userName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

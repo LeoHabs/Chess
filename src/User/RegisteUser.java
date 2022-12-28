@@ -1,44 +1,53 @@
 package User;
 
 import java.awt.*;
+import java.io.*;
 import java.util.Scanner;
 
 public class RegisteUser {
-    public static void createUser() {
+    public static void createUser() throws IOException {
         Scanner scanner = new Scanner(System.in);
         Users user = new Users();
+        File file = new File("/Users/pedrooliveira/Desktop/Io/src/Register.txt");
+        String filename = "/Users/pedrooliveira/Desktop/Io/src/Register.txt";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        FileWriter fw = new FileWriter(filename, true);
+        String name = "";
+        String userName = "";
+        String age = "";
         String password = "";
         String email = "";
-        System.out.print("Name: ");
-        user.setName(scanner.next());
+        while (br.readLine() != null) {
+
+        }
+
+
         while (true) {
             System.out.print("User Name: ");
-            user.setUserName(scanner.next());
+            userName = scanner.next();
+            user.setUserName(userName);
+            fw.write(userName + " ");
             if (Checkers.checkUser(user)) {
                 System.out.println("\033[0;31m" + "Its already exist this user name." + "\033[39m" + "\033[49m");
                 continue;
             }
             break;
         }
-        try {
-            while (true) {
-                System.out.print("Age: ");
-                user.setAge(scanner.nextInt());
-                if (user.getAge() < 10) {
-                    System.out.println("\033[0;31m" + "You need to have 10 years." + "\033[39m" + "\033[49m");
-                    continue;
-                }
-                break;
-            }
-        } catch (Exception e) {
-            System.out.println("\033[0;31m" + "Not recognise the number." + "\033[39m" + "\033[49m");
-        }
+        System.out.print("Name: ");
+        name = scanner.next();
+        fw.write(name + " ");
+        user.setName(name);
+
+        System.out.print("Age: ");
+        age = scanner.next();
+        user.setAge(age);
 
 
         while (!Checkers.emailValid(email)) {
             System.out.print("Email: ");
             email = scanner.next();
             if (Checkers.emailValid(email)) {
+                fw.write(email);
                 user.setEmail(email);
                 break;
             }
@@ -49,8 +58,8 @@ public class RegisteUser {
         while (!Checkers.passValid(password)) {
             System.out.print("Password: ");
             password = scanner.next();
-
             if (Checkers.passValid(password)) {
+                fw.write(password);
                 user.setPassword(password);
                 break;
             }

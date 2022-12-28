@@ -1,45 +1,32 @@
 package User;
 
-import Board.Board;
 
-
+import java.io.*;
 import java.util.Scanner;
 
 public class LogIn {
-    public static void loginProcedure() {
+    public static Users loginProcedure() throws IOException {
         Scanner scanner = new Scanner(System.in);
         int count = 0;
         Users user = null;
-
-        while (count < 3) {
-            System.out.println("Username: ");
-            user = checkLogin(scanner.next());
-            if (user == null) {
-                return;
-            }
-
-            if (user.login()) {
-                DataBase.setCurrentUser(user);
-                Board.createBoard();
-                Board.printBoard();
-                return;
-            } else {
-                System.out.println("\033[0;31m" + "Your username or password " + "\033[39m" + "\033[49m");
-                count++;
+        File file = new File("/Users/pedrooliveira/Desktop/Io/src/Register.txt");
+        String filename = "/Users/pedrooliveira/Desktop/Io/src/Register.txt";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line = null;
+        String userName = scanner.next();
+        while (br.readLine() != null) {
+            line = br.readLine();
+            if (line.contains(userName)) {
+                break;
             }
         }
-    }
+        String[] arrOfStr = line.split("\s");
+        String password = scanner.next();
+        if (password.equals(arrOfStr[4])) {
+            return new Users(arrOfStr[0], arrOfStr[1], arrOfStr[2], arrOfStr[3], arrOfStr[4]);
 
-    public static Users checkLogin(String userName) {
-        for (int i = 0; i < DataBase.users.size(); i++) {
-            if (userName.equals(DataBase.users.get(i).getUserName())) {
-                return DataBase.users.get(i);
-
-
-            }
         }
-        System.out.println("\033[0;31m" + "User not found" + "\033[39m" + "\033[49m");
+        System.out.println("You Username or password is wrong");
         return null;
     }
-
 }
