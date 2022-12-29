@@ -206,8 +206,15 @@ public class Board {
     }
 
     public static void movePiece(Piece piece,int horizontal, int vertical) {
+        Player ownTeam = null;
         board[getVertical(piece)][getHorizontal(piece)].setPiece(null);
         board[vertical][horizontal].setPiece(piece);
+        if(Game.getWhitePlayer().getPlayerPieces().contains(piece)){
+            ownTeam = Game.getWhitePlayer();
+        }else{
+            ownTeam = Game.getBlackPlayer();
+        }
+        ownTeam.addMoves(1);
     }
 
 

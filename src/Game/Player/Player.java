@@ -7,6 +7,8 @@ public class Player {
     private Users user;
 
     private int points;
+
+    private int moves;
     private ArrayList<Piece> playerPieces = new ArrayList<>();
     private ArrayList<Piece> capturedPieces = new ArrayList<>();
 
@@ -14,9 +16,12 @@ public class Player {
         this.user = user;
     }
 
+    public void addMoves(int moves) {
+        this.moves += moves;
+    }
 
     public void addPoints(int points){
-        this.points =points;
+        this.points +=points;
     }
 
     public ArrayList<Piece> getCapturedPieces() {
@@ -33,5 +38,9 @@ public class Player {
 
     public Users getUser() {
         return user;
+    }
+
+    public int getMoves() {
+        return moves;
     }
 }
