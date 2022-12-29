@@ -4,6 +4,7 @@ import Game.Game;
 import Game.Tutorial;
 import User.LogIn;
 import User.RegisteUser;
+import User.Users;
 
 import java.awt.desktop.SystemEventListener;
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class Menu {
         System.out.println(" ① \uD835\uDDE7\uD835\uDE02\uD835\uDE01\uD835\uDDFC\uD835\uDDFF\uD835\uDDF6\uD835\uDDEE\uD835\uDDF9");
         System.out.println(" ② \uD835\uDDD6\uD835\uDDFF\uD835\uDDF2\uD835\uDDEE\uD835\uDE01\uD835\uDDF2 \uD835\uDE02\uD835\uDE00\uD835\uDDF2\uD835\uDDFF");
         System.out.println(" ③ \uD835\uDDDA\uD835\uDDEE\uD835\uDDFA\uD835\uDDF2");
+        System.out.println(" 4 See player profile");
         int option = sc.nextInt();
         switch (option){
             case 1:
@@ -35,6 +37,14 @@ public class Menu {
                 Game.gameScript();
                 mainMenu();
                 break;
+            case 4:
+                try {
+                    Users.printAccount();
+                }catch (Exception e){
+                    System.out.println("Account doesn't exist");
+                }
+            default:
+                mainMenu();
         }
     }
 }

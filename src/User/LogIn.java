@@ -14,6 +14,7 @@ public class LogIn {
             String filename = "src/User/File/Names";
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = br.readLine();
+        System.out.print("Username: ");
             String userName = scanner.next();
             while (br.readLine() != null) {
                 line = br.readLine();
@@ -22,6 +23,7 @@ public class LogIn {
                 }
             }
             String[] arrOfStr = line.split("\s");
+        System.out.print("Password: ");
             String password = scanner.next();
         System.out.println(arrOfStr[4]);
             if (password.equals(arrOfStr[4])) {
