@@ -9,6 +9,8 @@ public class Player {
     private int points;
 
     private int moves;
+
+    private String rank;
     private ArrayList<Piece> playerPieces = new ArrayList<>();
     private ArrayList<Piece> capturedPieces = new ArrayList<>();
 
@@ -42,5 +44,9 @@ public class Player {
 
     public int getMoves() {
         return moves;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 }

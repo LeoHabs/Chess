@@ -2,9 +2,7 @@ package Game.Board.Pieces;
 import Game.Game;
 import Game.Player.Player;
 import Game.Spot;
-import User.Users;
 
-import java.util.Arrays;
 
 public class Board {
     private static Spot[][] board = new Spot[8][8];
@@ -21,7 +19,7 @@ public class Board {
     }
 
     public static void printBoard() {
-        System.out.println(Game.getBlackPlayer().getUser().getUserName() + " " + Users.printRank(Game.getBlackPlayer()));
+        System.out.println("USER: "+Game.getBlackPlayer().getUser().getUserName() + " " + Game.getBlackPlayer().getUser().getRank());
         printCaptured(Game.getWhitePlayer());
         System.out.print("\033[1;37m");
         System.out.println("   1  2  3  4  5  6  7  8");
@@ -39,7 +37,7 @@ public class Board {
         }
         System.out.println();
         printCaptured(Game.getBlackPlayer());
-        System.out.println(Game.getWhitePlayer().getUser().getUserName() + " " + Users.printRank(Game.getWhitePlayer()));
+        System.out.println("USER: "+Game.getWhitePlayer().getUser().getUserName() + " " + Game.getWhitePlayer().getUser().getRank());
     }
 
     public static void placePawns() {
