@@ -14,6 +14,7 @@ public class Game {
     private static Player blackPlayer;
 
     public static Player gameScript() {
+        System.out.println();
         System.out.println("White Player: ");
         while (true) {
             try {
@@ -64,7 +65,7 @@ public class Game {
                 break;
             }
         }
-        System.out.println(winner.getUser().getUserName());
+        System.out.println(winner.getUser().getUserName() +"wins!");
         Player loser = null;
         if (winner.equals(Game.getWhitePlayer())) {
             loser = Game.getBlackPlayer();
@@ -188,4 +189,5 @@ public class Game {
         }
         return null;
     }
+
 }
