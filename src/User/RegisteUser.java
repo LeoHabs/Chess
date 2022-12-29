@@ -35,7 +35,7 @@ public class RegisteUser {
 
         System.out.print("Age: ");
         age = scanner.next();
-        fw.write(age+" ");
+        fw.write(age + " ");
         user.setAge(age);
 
 
@@ -43,7 +43,7 @@ public class RegisteUser {
             System.out.print("Email: ");
             email = scanner.next();
             if (Checkers.emailValid(email)) {
-                fw.write(email +" ");
+                fw.write(email + " ");
                 user.setEmail(email);
                 break;
             }
@@ -65,6 +65,7 @@ public class RegisteUser {
                     "Special charters " +
                     "Numbers " + "\033[39m" + "\033[49m");
         }
+        fw.write("0 ");
         DataBase.users.add(user);
         System.out.println("Name: " + user.getName());
         System.out.println("User Name: " + user.getUserName());

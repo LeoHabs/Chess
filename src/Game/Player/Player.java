@@ -30,4 +30,8 @@ public class Player {
     public int getPoints() {
         return points;
     }
+
+    public Users getUser() {
+        return user;
+    }
 }

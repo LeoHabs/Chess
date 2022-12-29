@@ -4,10 +4,9 @@ import Game.Board.Pieces.Board;
 import Game.Board.Pieces.Piece;
 import Game.Player.Player;
 import User.LogIn;
-import User.Users;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -63,20 +62,49 @@ public class Game {
         } else {
             loser = Game.getWhitePlayer();
         }
+        try{
+            updatePointsWinner(winner);
+            updatePointsLoser(loser);
+        }catch (Exception e){
+            System.out.println(" ");
+        }
         return winner;
     }
 
-    public static Users savePoints() throws IOException {
-
+    public static void updatePointsWinner(Player player) throws IOException {
         File file = new File("src/User/File/Names");
         String filename = "src/User/File/Names";
-        FileWriter fw = new FileWriter(filename, true);
         BufferedReader br = new BufferedReader(new FileReader(file));
+        FileWriter fw = new FileWriter(filename, true);
+        String line = br.readLine();
+        while (br.readLine() != null) {
+            line = br.readLine();
+            if (line.contains(player.getUser().getUserName())) {
+                String[] arrOfStr = line.split("\s");
+                arrOfStr[5] = Integer.toString(player.getPoints() + counterPointsWinner(player));
+                fw.write(Arrays.toString(arrOfStr));
+                break;
+            }
+        }
+    }
 
-        fw.write(counterPointsLoser(Game.getWhitePlayer()));
-        fw.write(counterPointsWinner(Game.getWhitePlayer()));
-        fw.close();
-        return null;
+    public static void updatePointsLoser(Player player) throws IOException {
+        File file = new File("src/User/File/Names");
+        String filename = "src/User/File/Names";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        FileWriter fw = new FileWriter(filename, true);
+        String line = br.readLine();
+        while (br.readLine() != null) {
+            line = br.readLine();
+            if (line.contains(player.getUser().getUserName())) {
+                String[] arrOfStr = line.split("\s");
+                arrOfStr[5] = Integer.toString(player.getPoints() + counterPointsLoser(player));
+                fw.write(Arrays.toString(arrOfStr));
+                break;
+            }
+        }
+
+
     }
 
     public static int counterPointsWinner(Player player) {
