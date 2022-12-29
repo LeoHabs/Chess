@@ -4,9 +4,9 @@ import Game.Board.Pieces.Board;
 import Game.Board.Pieces.Piece;
 import Game.Player.Player;
 import User.LogIn;
-import User.Users;
 
-import java.util.ArrayList;
+import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -18,8 +18,8 @@ public class Game {
         while (true) {
             try {
                 Game.setWhitePlayer(new Player(LogIn.loginProcedure()));
-                if(Game.getWhitePlayer() != null){
-                break;
+                if (Game.getWhitePlayer() != null) {
+                    break;
                 }
             } catch (java.io.IOException e) {
                 System.out.println("Couldn't login :(");
@@ -29,7 +29,7 @@ public class Game {
         while (true) {
             try {
                 Game.setBlackPlayer(new Player(LogIn.loginProcedure()));
-                if(Game.getWhitePlayer() != null){
+                if (Game.getWhitePlayer() != null) {
                     break;
                 }
                 break;
@@ -42,29 +42,80 @@ public class Game {
         Board.printBoard();
         Player winner = null;
         while (winner == null) {
-            while (true){
-                if(play(whitePlayer)){
+            while (true) {
+                if (play(whitePlayer)) {
                     break;
                 }
             }
             Board.printBoard();
-            while (true){
-                if(play(blackPlayer)){
+            while (true) {
+                if (play(blackPlayer)) {
                     break;
                 }
             }
             Board.printBoard();
             winner = endGame();
         }
-        Player looser = null;
-        if(winner.equals(Game.getWhitePlayer())){
-            looser = Game.getBlackPlayer();
-        }else{
-            looser = Game.getWhitePlayer();
+        Player loser = null;
+        if (winner.equals(Game.getWhitePlayer())) {
+            loser = Game.getBlackPlayer();
+        } else {
+            loser = Game.getWhitePlayer();
+        }
+        try{
+            updatePointsWinner(winner);
+            updatePointsLoser(loser);
+        }catch (Exception e){
+            System.out.println(" ");
         }
         return winner;
     }
 
+    public static void updatePointsWinner(Player player) throws IOException {
+        File file = new File("src/User/File/Names");
+        String filename = "src/User/File/Names";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        FileWriter fw = new FileWriter(filename, true);
+        String line = br.readLine();
+        while (br.readLine() != null) {
+            line = br.readLine();
+            if (line.contains(player.getUser().getUserName())) {
+                String[] arrOfStr = line.split("\s");
+                arrOfStr[5] = Integer.toString(player.getPoints() + counterPointsWinner(player));
+                fw.write(Arrays.toString(arrOfStr));
+                break;
+            }
+        }
+    }
+
+    public static void updatePointsLoser(Player player) throws IOException {
+        File file = new File("src/User/File/Names");
+        String filename = "src/User/File/Names";
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        FileWriter fw = new FileWriter(filename, true);
+        String line = br.readLine();
+        while (br.readLine() != null) {
+            line = br.readLine();
+            if (line.contains(player.getUser().getUserName())) {
+                String[] arrOfStr = line.split("\s");
+                arrOfStr[5] = Integer.toString(player.getPoints() + counterPointsLoser(player));
+                fw.write(Arrays.toString(arrOfStr));
+                break;
+            }
+        }
+
+
+    }
+
+    public static int counterPointsWinner(Player player) {
+
+        return 500 + player.getPoints();
+    }
+
+    public static int counterPointsLoser(Player player) {
+
+        return 200 + player.getPoints();
+    }
 
     public static boolean play(Player player) {
         Scanner scanner = new Scanner(System.in);
@@ -74,18 +125,18 @@ public class Game {
             System.out.println("Not a valid coordinate");
             return false;
         }
-        Piece pieceToMove = Board.getBoard()[Board.letterToInt(choiceFrom.substring(0, 1))][Integer.parseInt(choiceFrom.substring(1, 2))-1].getPiece();
+        Piece pieceToMove = Board.getBoard()[Board.letterToInt(choiceFrom.substring(0, 1))][Integer.parseInt(choiceFrom.substring(1, 2)) - 1].getPiece();
         if (player.getPlayerPieces().contains(pieceToMove)) {
             System.out.print("To: ");
             String choiceTo = scanner.next();
-            if(choiceTo.length()!=2){
+            if (choiceTo.length() != 2) {
                 return false;
             }
-            Piece pieceToCapture = Board.getBoard()[Board.letterToInt(choiceTo.substring(0, 1))][Integer.parseInt(choiceTo.substring(1, 2))-1].getPiece();
+            Piece pieceToCapture = Board.getBoard()[Board.letterToInt(choiceTo.substring(0, 1))][Integer.parseInt(choiceTo.substring(1, 2)) - 1].getPiece();
             if (pieceToMove.checkCapturePiece(pieceToCapture) || pieceToCapture == null) {
-                if(pieceToMove.movePiece(Board.letterToInt(choiceTo.substring(0, 1)), Integer.parseInt(choiceTo.substring(1, 2)) - 1)){
+                if (pieceToMove.movePiece(Board.letterToInt(choiceTo.substring(0, 1)), Integer.parseInt(choiceTo.substring(1, 2)) - 1)) {
                     return true;
-                }else{
+                } else {
                     return false;
                 }
             }
