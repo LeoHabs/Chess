@@ -55,7 +55,7 @@ public class RegisteUser {
             System.out.print("Password: ");
             password = scanner.next();
             if (Checkers.passValid(password)) {
-                fw.write(password);
+                fw.write(password + " ");
                 user.setPassword(password);
                 break;
             }
