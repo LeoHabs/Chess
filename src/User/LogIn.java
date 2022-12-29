@@ -9,7 +9,6 @@ public class LogIn {
         Scanner scanner = new Scanner(System.in);
         int count = 0;
         Users user = null;
-
             File file = new File("src/User/File/Names");
             String filename = "src/User/File/Names";
             BufferedReader br = new BufferedReader(new FileReader(file));

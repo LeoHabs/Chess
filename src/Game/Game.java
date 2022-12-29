@@ -72,10 +72,10 @@ public class Game {
         } else {
             loser = Game.getWhitePlayer();
         }
-        try{
+        try {
             updatePointsWinner(winner);
             updatePointsLoser(loser);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(" ");
         }
         return winner;
@@ -85,7 +85,7 @@ public class Game {
         File file = new File("src/User/File/Names");
         String filename = "src/User/File/Names";
         BufferedReader br = new BufferedReader(new FileReader(file));
-        FileWriter fw = new FileWriter(filename, true);
+        BufferedWriter fw = new BufferedWriter(new FileWriter(filename));
         String line = br.readLine();
         while (br.readLine() != null) {
             line = br.readLine();
