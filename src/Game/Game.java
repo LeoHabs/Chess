@@ -18,7 +18,7 @@ public class Game {
         while (true) {
             try {
                 Game.setWhitePlayer(new Player(LogIn.loginProcedure()));
-                if (Game.getWhitePlayer() != null) {
+                if (Game.getWhitePlayer().getUser() != null) {
                     break;
                 }
             } catch (java.io.IOException e) {
@@ -29,7 +29,7 @@ public class Game {
         while (true) {
             try {
                 Game.setBlackPlayer(new Player(LogIn.loginProcedure()));
-                if (Game.getWhitePlayer() != null) {
+                if (Game.getBlackPlayer().getUser() != null) {
                     break;
                 }
                 break;
@@ -41,21 +41,30 @@ public class Game {
         Board.createBoard();
         Board.printBoard();
         Player winner = null;
-        while (winner == null) {
+        while (true) {
             while (true) {
                 if (play(whitePlayer)) {
                     break;
                 }
             }
             Board.printBoard();
+            if (endGame() != null){
+                winner = endGame();
+                break;
+            }
+
             while (true) {
                 if (play(blackPlayer)) {
                     break;
                 }
             }
             Board.printBoard();
-            winner = endGame();
+            if (endGame() != null){
+                winner = endGame();
+                break;
+            }
         }
+        System.out.println(winner.getUser().getUserName());
         Player loser = null;
         if (winner.equals(Game.getWhitePlayer())) {
             loser = Game.getBlackPlayer();
@@ -86,6 +95,7 @@ public class Game {
                 break;
             }
         }
+        fw.close();
     }
 
     public static void updatePointsLoser(Player player) throws IOException {
@@ -102,6 +112,7 @@ public class Game {
                 fw.write(Arrays.toString(arrOfStr));
                 break;
             }
+            fw.close();
         }
 
 
@@ -109,12 +120,12 @@ public class Game {
 
     public static int counterPointsWinner(Player player) {
 
-        return 500 + player.getPoints();
+        return 500 + player.getPoints() * (-(player.getMoves() * 2));
     }
 
     public static int counterPointsLoser(Player player) {
 
-        return 200 + player.getPoints();
+        return 200 + player.getPoints() * (-(player.getMoves() * 2));
     }
 
     public static boolean play(Player player) {
