@@ -65,7 +65,7 @@ public class RegisteUser {
                     "Special charters " +
                     "Numbers " + "\033[39m" + "\033[49m");
         }
-        fw.write("0 ");
+        fw.write(" "+ "0 ");
         DataBase.users.add(user);
         System.out.println("Name: " + user.getName());
         System.out.println("User Name: " + user.getUserName());
