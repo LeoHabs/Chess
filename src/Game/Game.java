@@ -62,7 +62,6 @@ public class Game {
         }else{
             looser = Game.getWhitePlayer();
         }
-
         return winner;
     }
 
