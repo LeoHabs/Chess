@@ -3,6 +3,7 @@ package Game;
 import Game.Board.Pieces.Board;
 import Game.Board.Pieces.Piece;
 import Game.Player.Player;
+import Menu.Menu;
 import User.LogIn;
 
 import java.io.*;
@@ -14,6 +15,7 @@ public class Game {
     private static Player blackPlayer;
 
     public static Player gameScript() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("White Player: ");
         while (true) {
@@ -21,6 +23,10 @@ public class Game {
                 Game.setWhitePlayer(new Player(LogIn.loginProcedure()));
                 if (Game.getWhitePlayer().getUser() != null) {
                     break;
+                }
+                System.out.println("You need to create an account first if you haven't yet! Go back to menu?(Y/N)");
+                if (scanner.next().equals("Y")){
+                    Menu.mainMenu();
                 }
             } catch (java.io.IOException e) {
                 System.out.println("Couldn't login :(");
@@ -33,12 +39,18 @@ public class Game {
                 if (Game.getBlackPlayer().getUser() != null) {
                     break;
                 }
-                break;
+                System.out.println("You need to create an account first if you haven't yet! Go back to menu?(Y/N)");
+                if (scanner.next().equals("Y")){
+                    Menu.mainMenu();
+                }
             } catch (java.io.IOException e) {
                 System.out.println("Couldn't login :(");
             }
         }
-
+        if(Game.getWhitePlayer().getUser().getUserName().equals(Game.getBlackPlayer().getUser().getUserName())){
+            System.out.println("You can't play against yourself!");
+            gameScript();
+        }
         Board.createBoard();
         Board.printBoard();
         Player winner = null;
