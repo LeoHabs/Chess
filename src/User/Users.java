@@ -117,7 +117,6 @@ public class Users {
             }
         }
         String[] arrOfStr = line.split("\s");
-
         System.out.println("👨‍🦲Name: " + arrOfStr[1]);
         System.out.println("🤓Username: " + arrOfStr[0]);
         System.out.println("👶Age: " + arrOfStr[2]);
@@ -141,6 +140,9 @@ public class Users {
         }
         if (points > 1000) {
             return "🧹";
+        }
+        if(points >= 0 ){
+            return "Unranked";
         }
         return null;
     }
