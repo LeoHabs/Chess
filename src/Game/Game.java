@@ -61,7 +61,7 @@ public class Game {
                 }
             }
             Board.printBoard();
-            if (endGame() != null){
+            if (endGame() != null) {
                 winner = endGame();
                 break;
             }
@@ -72,7 +72,7 @@ public class Game {
                 }
             }
             Board.printBoard();
-            if (endGame() != null){
+            if (endGame() != null) {
                 winner = endGame();
                 break;
             }
@@ -104,7 +104,7 @@ public class Game {
             if (line.contains(player.getUser().getUserName())) {
                 String[] arrOfStr = line.split("\s");
                 arrOfStr[5] = Integer.toString(player.getPoints() + counterPointsWinner(player));
-                fw.write(Arrays.toString(arrOfStr));
+                fw.write(Arrays.toString(arrOfStr).substring(1, Arrays.toString(arrOfStr).length() - 1));
                 break;
             }
         }
@@ -115,14 +115,14 @@ public class Game {
         File file = new File("src/User/File/Names");
         String filename = "src/User/File/Names";
         BufferedReader br = new BufferedReader(new FileReader(file));
-        FileWriter fw = new FileWriter(filename, true);
+        BufferedWriter fw = new BufferedWriter(new FileWriter(filename));
         String line = br.readLine();
         while (br.readLine() != null) {
             line = br.readLine();
             if (line.contains(player.getUser().getUserName())) {
                 String[] arrOfStr = line.split("\s");
                 arrOfStr[5] = Integer.toString(player.getPoints() + counterPointsLoser(player));
-                fw.write(Arrays.toString(arrOfStr));
+                fw.write(Arrays.toString(arrOfStr).substring(1, Arrays.toString(arrOfStr).length() - 1));
                 break;
             }
             fw.close();

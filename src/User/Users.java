@@ -32,17 +32,6 @@ public class Users {
 
     }
 
-    public boolean login() {
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Password: ");
-        if (scanner.next().equals(getPassword())) {
-            this.logIn = true;
-
-            return true;
-        }
-        return false;
-    }
 
     public String getName() {
         return name;
