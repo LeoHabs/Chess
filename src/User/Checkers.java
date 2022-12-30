@@ -21,13 +21,6 @@ public class Checkers {
         return matcher.matches();
     }
 
-    public static boolean checkUser(Users user) {
-        for (Users eachUser : DataBase.users) {
-            if (Objects.equals(eachUser.getUserName(), user.getUserName())) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 
 }

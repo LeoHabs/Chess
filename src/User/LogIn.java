@@ -7,10 +7,7 @@ import java.util.Scanner;
 public class LogIn {
     public static Users loginProcedure() throws IOException {
         Scanner scanner = new Scanner(System.in);
-        int count = 0;
-        Users user = null;
             File file = new File("src/User/File/Names");
-            String filename = "src/User/File/Names";
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = br.readLine();
         System.out.print("Username: ");

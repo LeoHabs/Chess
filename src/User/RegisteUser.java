@@ -21,11 +21,11 @@ public class RegisteUser {
             System.out.print("User Name: ");
             userName = scanner.next();
             user.setUserName(userName);
-            fw.write(userName + " ");
-            if (Checkers.checkUser(user)) {
-                System.out.println("\033[0;31m" + "Its already exist this user name." + "\033[39m" + "\033[49m");
+            if (!userAvailable(userName)) {
+                System.out.println("\033[0;31m" + "Username already in use!" + "\033[39m" + "\033[49m");
                 continue;
             }
+            fw.write(userName + " ");
             break;
         }
         System.out.print("Name: ");
@@ -75,4 +75,18 @@ public class RegisteUser {
         fw.close();
     }
 
+
+    public static boolean userAvailable(String username) throws IOException {
+        File file = new File("src/User/File/Names");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line = br.readLine();
+        String userName = username;
+        while (br.readLine() != null) {
+            line = br.readLine();
+            if (line.contains(userName)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
