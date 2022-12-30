@@ -25,7 +25,7 @@ public class Game {
                     break;
                 }
                 System.out.println("You need to create an account first if you haven't yet! Go back to menu?(Y/N)");
-                if (scanner.next().equals("Y")){
+                if (scanner.next().equals("Y")) {
                     Menu.mainMenu();
                 }
             } catch (java.io.IOException e) {
@@ -40,14 +40,14 @@ public class Game {
                     break;
                 }
                 System.out.println("You need to create an account first if you haven't yet! Go back to menu?(Y/N)");
-                if (scanner.next().equals("Y")){
+                if (scanner.next().equals("Y")) {
                     Menu.mainMenu();
                 }
             } catch (java.io.IOException e) {
                 System.out.println("Couldn't login :(");
             }
         }
-        if(Game.getWhitePlayer().getUser().getUserName().equals(Game.getBlackPlayer().getUser().getUserName())){
+        if (Game.getWhitePlayer().getUser().getUserName().equals(Game.getBlackPlayer().getUser().getUserName())) {
             System.out.println("You can't play against yourself!");
             gameScript();
         }
@@ -77,7 +77,7 @@ public class Game {
                 break;
             }
         }
-        System.out.println(winner.getUser().getUserName() +"wins!");
+        System.out.println(winner.getUser().getUserName() + "wins!");
         Player loser = null;
         if (winner.equals(Game.getWhitePlayer())) {
             loser = Game.getBlackPlayer();
@@ -97,35 +97,35 @@ public class Game {
         File file = new File("src/User/File/Names");
         String filename = "src/User/File/Names";
         BufferedReader br = new BufferedReader(new FileReader(file));
-        BufferedWriter fw = new BufferedWriter(new FileWriter(filename));
+        StringBuffer fw = new StringBuffer(filename);
         String line = br.readLine();
         while (br.readLine() != null) {
             line = br.readLine();
             if (line.contains(player.getUser().getUserName())) {
                 String[] arrOfStr = line.split("\s");
                 arrOfStr[5] = Integer.toString(player.getPoints() + counterPointsWinner(player));
-                fw.write(Arrays.toString(arrOfStr).substring(1, Arrays.toString(arrOfStr).length() - 1));
+                System.out.println(arrOfStr.length);
+                //   fw.append(Arrays.toString(arrOfStr).substring(1, Arrays.toString(arrOfStr).length() - 1));
                 break;
             }
         }
-        fw.close();
     }
 
     public static void updatePointsLoser(Player player) throws IOException {
-        File file = new File("src/User/File/Names");
-        String filename = "src/User/File/Names";
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        BufferedWriter fw = new BufferedWriter(new FileWriter(filename));
-        String line = br.readLine();
-        while (br.readLine() != null) {
-            line = br.readLine();
-            if (line.contains(player.getUser().getUserName())) {
-                String[] arrOfStr = line.split("\s");
-                arrOfStr[5] = Integer.toString(player.getPoints() + counterPointsLoser(player));
-                fw.write(Arrays.toString(arrOfStr).substring(1, Arrays.toString(arrOfStr).length() - 1));
-                break;
+        FileReader fileReader=new FileReader("/Users/pedrooliveira/Desktop/Chess/Chess/src/User/File/Names");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        while((line=bufferedReader.readLine())!=null){
+            if(line.contains(player.getUser().getUserName())){
+                FileWriter fileWriter = new FileWriter("/Users/pedrooliveira/Desktop/Chess/Chess/src/User/File/Names");
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                StringBuffer buffer = new StringBuffer("Page");
+
+                buffer.append("...");
+                buffer.append("Msg");
+
+                bufferedWriter.write(buffer.toString());
             }
-            fw.close();
         }
 
 
