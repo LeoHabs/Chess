@@ -21,7 +21,6 @@ public class LogIn {
             String[] arrOfStr = line.split("\s");
         System.out.print("Password: ");
             String password = scanner.next();
-        System.out.println("RESULT:");
             if (password.equals(arrOfStr[4])) {
                 return new Users(arrOfStr[0], arrOfStr[1], arrOfStr[2], arrOfStr[3], arrOfStr[4],"0",Users.calculateRank(Integer.parseInt(arrOfStr[5])));
             }
