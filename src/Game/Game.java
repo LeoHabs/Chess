@@ -93,20 +93,21 @@ public class Game {
             loser = Game.getWhitePlayer();
         }
         try {
-            updatePointsWinner(winner);
-            updatePointsLoser(loser);
+            updatePoints(winner,loser);
         } catch (Exception e) {
             System.out.println(" ");
         }
         return winner;
     }
 
-    public static void updatePointsWinner(Player player) throws IOException {
-        int index = 0;
+    public static void updatePoints(Player playerWinner , Player playerLoser) throws IOException {
+        int indexWinner = 0;
+        int indexLoser = 0;
         File file = new File("src/Names");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = br.readLine();
-        String userName = player.getUser().getUserName();
+        String userNameWinner = playerWinner.getUser().getUserName();
+        String userNameLoser = playerLoser.getUser().getUserName();
         String[] allfile = new String[20];
         for (int i = 0; br.readLine() != null; i++) {
             line = br.readLine();
@@ -114,18 +115,31 @@ public class Game {
         }
 
         for (int i = 0; i < allfile.length; i++) {
-            if (allfile[i].contains(userName)) {
+            if (allfile[i].contains(userNameWinner)) {
                 String[] rightLine = allfile[i].split("\s");
-                rightLine[5] = String.valueOf(player.getPoints() + counterPointsWinner(player));
+                rightLine[5] = String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsWinner(playerWinner));
                 String updatedLine = Arrays.toString(rightLine);
                 allfile[i] = updatedLine.substring(1, updatedLine.length() - 1);
-                index = i;
+                indexWinner = i;
                 break;
             }
         }
+
+        for (int i = 0; i < allfile.length; i++) {
+            if (allfile[i].contains(userNameLoser)) {
+                String[] rightLine = allfile[i].split("\s");
+                rightLine[5] = String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsWinner(playerWinner));
+                String updatedLine = Arrays.toString(rightLine);
+                allfile[i] = updatedLine.substring(1, updatedLine.length() - 1);
+                indexLoser = i;
+                break;
+            }
+        }
+
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
 
-        allfile[index] = allfile[index].replaceAll(",", "");
+        allfile[indexWinner] = allfile[indexWinner].replaceAll(",", "");
+        allfile[indexLoser] = allfile[indexLoser].replaceAll(",","");
 
         bufferedWriter.write(".\n");
         for (String s : allfile) {
@@ -140,43 +154,6 @@ public class Game {
     }
 
 
-    public static void updatePointsLoser(Player player) throws IOException {
-        int index = 0;
-        File file = new File("src/Names");
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = br.readLine();
-        String userName = player.getUser().getUserName();
-        String[] allfile = new String[20];
-        for (int i = 0; br.readLine() != null; i++) {
-            line = br.readLine();
-            allfile[i] = line;
-        }
-
-        for (int i = 0; i < allfile.length; i++) {
-            if (allfile[i].contains(userName)) {
-                String[] rightLine = allfile[i].split("\s");
-                rightLine[5] = String.valueOf(player.getPoints() + counterPointsLoser(player));
-                String updatedLine = Arrays.toString(rightLine);
-                allfile[i] = updatedLine.substring(1, updatedLine.length() - 1);
-                index = i;
-                break;
-            }
-        }
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-
-        allfile[index] = allfile[index].replaceAll(",", "");
-
-        bufferedWriter.write(".\n");
-        for (String s : allfile) {
-            if (s == null) {
-                break;
-            }
-            bufferedWriter.write("\n");
-            bufferedWriter.write(s);
-            bufferedWriter.write("\n");
-        }
-        bufferedWriter.close();
-    }
 
     public static int counterPointsWinner(Player player) {
 
