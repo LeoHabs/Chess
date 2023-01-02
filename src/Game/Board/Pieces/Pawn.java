@@ -56,7 +56,6 @@ public class Pawn extends Piece {
                     }
                 }
             } else {
-                System.out.println("Entrou");
                 if (Game.getWhitePlayer().getPlayerPieces().contains(this)) {
                     if (vertical == currentVertical - 1 && currentHorizontal == horizontal) {
                         Board.movePiece(this, horizontal, vertical);

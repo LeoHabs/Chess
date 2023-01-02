@@ -178,6 +178,7 @@ public class Game {
             System.out.print("To: ");
             String choiceTo = scanner.next();
             if (choiceTo.length() != 2) {
+                System.out.println("\033[0;31m" + "Not a valid coordinate" + "\033[39m" + "\033[49m");
                 return false;
             }
             Piece pieceToCapture = Board.getBoard()[Board.letterToInt(choiceTo.substring(0, 1))][Integer.parseInt(choiceTo.substring(1, 2)) - 1].getPiece();
