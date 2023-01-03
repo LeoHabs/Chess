@@ -173,6 +173,14 @@ public class Game {
             System.out.println("\033[0;31m" + "Not a valid coordinate" + "\033[39m" + "\033[49m");
             return false;
         }
+        if(Board.letterToInt(choiceFrom.substring(0, 1)) < 0 || Board.letterToInt(choiceFrom.substring(0, 1)) > 7 ){
+            System.out.println("Letter doesn't exist");
+            return false;
+        }
+        if((Integer.parseInt(choiceFrom.substring(1, 2)) - 1) < 0 || (Integer.parseInt(choiceFrom.substring(1, 2)) - 1) > 7){
+            System.out.println("Number doesn't exist");
+            return false;
+        }
         Piece pieceToMove = Board.getBoard()[Board.letterToInt(choiceFrom.substring(0, 1))][Integer.parseInt(choiceFrom.substring(1, 2)) - 1].getPiece();
         if (player.getPlayerPieces().contains(pieceToMove)) {
             System.out.print("To: ");
