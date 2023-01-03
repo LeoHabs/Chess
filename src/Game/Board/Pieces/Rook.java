@@ -72,7 +72,6 @@ public class Rook extends Piece {
              return true;
         }
 
-        if()
         System.out.println("Illegal move!");
         return false;
     }
