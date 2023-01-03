@@ -7,11 +7,12 @@ import User.RegisteUser;
 import User.Users;
 
 import java.awt.desktop.SystemEventListener;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
 
-    public static void mainMenu() {
+    public static void mainMenu(){
 
         Scanner sc = new Scanner(System.in);
         System.out.println("\n" +
@@ -42,7 +43,8 @@ public class Menu {
                 mainMenu();
                 break;
             case 3:
-                Game.gameScript();
+                    Game.gameScript();
+
                 mainMenu();
                 break;
             case 4:

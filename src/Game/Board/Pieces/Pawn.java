@@ -74,7 +74,7 @@ public class Pawn extends Piece {
             if (Math.abs(currentVertical - vertical) == 1 && Math.abs(currentHorizontal - horizontal) == 1 && Math.abs(currentVertical - vertical) == Math.abs(currentHorizontal - horizontal)) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                if(vertical == 0 || vertical == 7) {
+                if(vertical == 0 || vertical == 7 && !Board.getBoard()[vertical][horizontal].getPiece().getName().equals("King")) {
                     Board.getBoard()[vertical][horizontal].setPiece(exchangePiece());
                 }
                 return true;

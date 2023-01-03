@@ -76,7 +76,7 @@ public class Bishop extends Piece {
                         System.out.println("There is something blocking the path!");
                         return false;
                     }
-                    saverDiagLDwn++;
+                    saverDiagLDwn--;
                 }
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);

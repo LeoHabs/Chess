@@ -14,7 +14,7 @@ public class Game {
     private static Player whitePlayer;
     private static Player blackPlayer;
 
-    public static Player gameScript() {
+    public static Player gameScript(){
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("\033[0;37m" + "White Player: " + "\033[39m" + "\033[49m");
@@ -85,7 +85,6 @@ public class Game {
                 "  ╚██╔╝ ╚██╔╝ ██║██║ ╚███║██║ ╚███║███████╗██║  ██║\n" +
                 "   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚══╝╚══════╝╚═╝  ╚═╝");
         System.out.println(winner.getUser().getUserName());
-        System.out.println(winner.getPoints());
         Player loser = null;
         if (winner.equals(Game.getWhitePlayer())) {
             loser = Game.getBlackPlayer();
@@ -93,9 +92,9 @@ public class Game {
             loser = Game.getWhitePlayer();
         }
         try {
-            updatePoints(winner,loser);
-        } catch (Exception e) {
-            System.out.println(" ");
+            updatePoints(winner, loser);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
         return winner;
     }
@@ -103,7 +102,7 @@ public class Game {
     public static void updatePoints(Player playerWinner , Player playerLoser) throws IOException {
         int indexWinner = 0;
         int indexLoser = 0;
-        File file = new File("src/Names");
+        File file = new File("src/User/File/Names");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = br.readLine();
         String userNameWinner = playerWinner.getUser().getUserName();
@@ -117,7 +116,8 @@ public class Game {
         for (int i = 0; i < allfile.length; i++) {
             if (allfile[i].contains(userNameWinner)) {
                 String[] rightLine = allfile[i].split("\s");
-                rightLine[5] = String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsWinner(playerWinner));
+                String points= String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsWinner(playerWinner));
+                rightLine[5] = points;
                 String updatedLine = Arrays.toString(rightLine);
                 allfile[i] = updatedLine.substring(1, updatedLine.length() - 1);
                 indexWinner = i;
@@ -128,7 +128,8 @@ public class Game {
         for (int i = 0; i < allfile.length; i++) {
             if (allfile[i].contains(userNameLoser)) {
                 String[] rightLine = allfile[i].split("\s");
-                rightLine[5] = String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsWinner(playerWinner));
+                String points = String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsLoser(playerLoser));
+                rightLine[5] = points;
                 String updatedLine = Arrays.toString(rightLine);
                 allfile[i] = updatedLine.substring(1, updatedLine.length() - 1);
                 indexLoser = i;
