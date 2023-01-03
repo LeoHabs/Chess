@@ -3,6 +3,7 @@ package User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.net.URL;
 import java.util.Scanner;
 
 public class Users {
@@ -123,6 +124,9 @@ public class Users {
         System.out.println("＠Email: " + arrOfStr[3]);
         System.out.println("💎Points: " + arrOfStr[5]);
         System.out.println("🤴Rank: " + calculateRank(Integer.parseInt(arrOfStr[5])));
+        System.out.println();
+        URL url = new URL("mailto:"+arrOfStr[3]);
+        System.out.println("Contact "+arrOfStr[1]+" "+ url);
     }
 
     public static String calculateRank(int points) {
