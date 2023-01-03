@@ -22,6 +22,12 @@ public class King extends Piece {
         int currentVertical = Board.getVertical(this);
         int currentHorizontal = Board.getHorizontal(this);
 
+        if(currentHorizontal == horizontal && currentVertical - 1 == vertical){
+            this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
+            Board.movePiece(this, horizontal, vertical);
+            return true;
+        }
+
         if (horizontal == currentHorizontal - 1 && vertical == currentVertical) {
             this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
             Board.movePiece(this, horizontal, vertical);
