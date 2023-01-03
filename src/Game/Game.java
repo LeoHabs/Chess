@@ -14,17 +14,17 @@ public class Game {
     private static Player whitePlayer;
     private static Player blackPlayer;
 
-    public static Player gameScript() {
+    public static Player gameScript(){
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        System.out.println("White Player: ");
+        System.out.println("\033[0;37m" + "White Player: " + "\033[39m" + "\033[49m");
         while (true) {
             try {
                 Game.setWhitePlayer(new Player(LogIn.loginProcedure()));
                 if (Game.getWhitePlayer().getUser() != null) {
                     break;
                 }
-                System.out.println("You need to create an account first if you haven't yet! Go back to menu?(Y/N)");
+                System.out.println("\033[0;31m" + "You need to create an account first if you haven't yet!" + "\033[39m" + "\033[49m" + "  Go back to menu?(Y/N)");
                 if (scanner.next().equals("Y")) {
                     Menu.mainMenu();
                 }
@@ -32,14 +32,14 @@ public class Game {
                 System.out.println("Couldn't login :(");
             }
         }
-        System.out.println("Black Player");
+        System.out.println("\033[0;37m" + "Black Player" + "\033[39m" + "\033[49m");
         while (true) {
             try {
                 Game.setBlackPlayer(new Player(LogIn.loginProcedure()));
                 if (Game.getBlackPlayer().getUser() != null) {
                     break;
                 }
-                System.out.println("You need to create an account first if you haven't yet! Go back to menu?(Y/N)");
+                System.out.println("\033[0;31m" + "You need to create an account first if you haven't yet!" + "\033[39m" + "\033[49m" + " Go back to menu?(Y/N)");
                 if (scanner.next().equals("Y")) {
                     Menu.mainMenu();
                 }
@@ -77,8 +77,14 @@ public class Game {
                 break;
             }
         }
-        System.out.println(winner.getUser().getUserName() + "wins!");
-        System.out.println(winner.getPoints());
+        System.out.println("\n" +
+                " ██╗       ██╗██╗███╗  ██╗███╗  ██╗███████╗██████╗ \n" +
+                " ██║  ██╗  ██║██║████╗ ██║████╗ ██║██╔════╝██╔══██╗\n" +
+                " ╚██╗████╗██╔╝██║██╔██╗██║██╔██╗██║█████╗  ██████╔╝\n" +
+                "  ████╔═████║ ██║██║╚████║██║╚████║██╔══╝  ██╔══██╗\n" +
+                "  ╚██╔╝ ╚██╔╝ ██║██║ ╚███║██║ ╚███║███████╗██║  ██║\n" +
+                "   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚══╝╚═╝  ╚══╝╚══════╝╚═╝  ╚═╝");
+        System.out.println(winner.getUser().getUserName());
         Player loser = null;
         if (winner.equals(Game.getWhitePlayer())) {
             loser = Game.getBlackPlayer();
@@ -86,90 +92,69 @@ public class Game {
             loser = Game.getWhitePlayer();
         }
         try {
-            updatePointsWinner(winner);
-            updatePointsLoser(loser);
-        } catch (Exception e) {
-            System.out.println(" ");
+            updatePoints(winner, loser);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
         return winner;
     }
 
-    public static void updatePointsWinner(Player player) throws IOException {
-        int index= 0;
-        File file = new File("src/Names");
+    public static void updatePoints(Player playerWinner , Player playerLoser) throws IOException {
+        int indexWinner = 0;
+        int indexLoser = 0;
+        File file = new File("src/User/File/Names");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line = br.readLine();
-        String userName = player.getUser().getUserName();
+        String userNameWinner = playerWinner.getUser().getUserName();
+        String userNameLoser = playerLoser.getUser().getUserName();
         String[] allfile = new String[20];
         for (int i = 0; br.readLine() != null; i++) {
             line = br.readLine();
-            allfile[i]= line;
+            allfile[i] = line;
         }
 
         for (int i = 0; i < allfile.length; i++) {
-            if (allfile[i].contains(userName)){
+            if (allfile[i].contains(userNameWinner)) {
                 String[] rightLine = allfile[i].split("\s");
-                rightLine[5] = String.valueOf(player.getPoints() + counterPointsWinner(player));
+                String points= String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsWinner(playerWinner));
+                rightLine[5] = points;
                 String updatedLine = Arrays.toString(rightLine);
-                allfile[i] = updatedLine.substring(1,updatedLine.length()-1);
-                index = i;
+                allfile[i] = updatedLine.substring(1, updatedLine.length() - 1);
+                indexWinner = i;
                 break;
             }
         }
+
+        for (int i = 0; i < allfile.length; i++) {
+            if (allfile[i].contains(userNameLoser)) {
+                String[] rightLine = allfile[i].split("\s");
+                String points = String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsLoser(playerLoser));
+                rightLine[5] = points;
+                String updatedLine = Arrays.toString(rightLine);
+                allfile[i] = updatedLine.substring(1, updatedLine.length() - 1);
+                indexLoser = i;
+                break;
+            }
+        }
+
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
 
-        allfile[index] = allfile[index].replaceAll(",","");
+        allfile[indexWinner] = allfile[indexWinner].replaceAll(",", "");
+        allfile[indexLoser] = allfile[indexLoser].replaceAll(",","");
 
         bufferedWriter.write(".\n");
         for (String s : allfile) {
-            if (s == null){
+            if (s == null) {
                 break;
             }
-            bufferedWriter.write("\n") ;
+            bufferedWriter.write("\n");
             bufferedWriter.write(s);
-            bufferedWriter.write("\n") ;
+            bufferedWriter.write("\n");
         }
         bufferedWriter.close();
     }
 
 
-    public static void updatePointsLoser(Player player) throws IOException {
-        int index= 0;
-        File file = new File("src/Names");
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = br.readLine();
-        String userName = player.getUser().getUserName();
-        String[] allfile = new String[20];
-        for (int i = 0; br.readLine() != null; i++) {
-            line = br.readLine();
-            allfile[i]= line;
-        }
-
-        for (int i = 0; i < allfile.length; i++) {
-            if (allfile[i].contains(userName)){
-                String[] rightLine = allfile[i].split("\s");
-                rightLine[5] = String.valueOf(player.getPoints() + counterPointsLoser(player));
-                String updatedLine = Arrays.toString(rightLine);
-                allfile[i] = updatedLine.substring(1,updatedLine.length()-1);
-                index = i;
-                break;
-            }
-        }
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-
-        allfile[index] = allfile[index].replaceAll(",","");
-
-        bufferedWriter.write(".\n");
-        for (String s : allfile) {
-            if (s == null){
-                break;
-            }
-            bufferedWriter.write("\n") ;
-            bufferedWriter.write(s);
-            bufferedWriter.write("\n") ;
-        }
-        bufferedWriter.close();
-    }
 
     public static int counterPointsWinner(Player player) {
 
@@ -186,7 +171,7 @@ public class Game {
         System.out.print("From: ");
         String choiceFrom = scanner.next();
         if (choiceFrom.length() != 2) {
-            System.out.println("Not a valid coordinate");
+            System.out.println("\033[0;31m" + "Not a valid coordinate" + "\033[39m" + "\033[49m");
             return false;
         }
         Piece pieceToMove = Board.getBoard()[Board.letterToInt(choiceFrom.substring(0, 1))][Integer.parseInt(choiceFrom.substring(1, 2)) - 1].getPiece();
@@ -194,6 +179,7 @@ public class Game {
             System.out.print("To: ");
             String choiceTo = scanner.next();
             if (choiceTo.length() != 2) {
+                System.out.println("\033[0;31m" + "Not a valid coordinate" + "\033[39m" + "\033[49m");
                 return false;
             }
             Piece pieceToCapture = Board.getBoard()[Board.letterToInt(choiceTo.substring(0, 1))][Integer.parseInt(choiceTo.substring(1, 2)) - 1].getPiece();
@@ -205,7 +191,7 @@ public class Game {
                 }
             }
         } else {
-            System.out.println("No piece of yours in that coordinate");
+            System.out.println("\033[0;31m" + "No piece of yours in that coordinate" + "\033[39m" + "\033[49m");
         }
         return false;
     }
