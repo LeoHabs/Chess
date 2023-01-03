@@ -57,12 +57,22 @@ public class Pawn extends Piece {
                 }
             } else {
                 if (Game.getWhitePlayer().getPlayerPieces().contains(this)) {
+                    if(vertical == 0) {
+                        Board.movePiece(this, horizontal, vertical);
+                        Board.getBoard()[vertical][horizontal].setPiece(exchangePiece());
+                        return true;
+                    }
                     if (vertical == currentVertical - 1 && currentHorizontal == horizontal) {
                         Board.movePiece(this, horizontal, vertical);
                         return true;
                     }
                 }
                 if (Game.getBlackPlayer().getPlayerPieces().contains(this)) {
+                    if(vertical == 7) {
+                        Board.movePiece(this, horizontal, vertical);
+                        Board.getBoard()[vertical][horizontal].setPiece(exchangePiece());
+                        return true;
+                    }
                     if (vertical == currentVertical + 1 && currentHorizontal == horizontal) {
                         Board.movePiece(this, horizontal, vertical);
                         return true;
@@ -74,11 +84,13 @@ public class Pawn extends Piece {
             if (Math.abs(currentVertical - vertical) == 1 && Math.abs(currentHorizontal - horizontal) == 1 && Math.abs(currentVertical - vertical) == Math.abs(currentHorizontal - horizontal)) {
                 this.capturePiece(Board.getBoard()[vertical][horizontal].getPiece());
                 Board.movePiece(this, horizontal, vertical);
-                if(vertical == 0 || vertical == 7 && !Board.getBoard()[vertical][horizontal].getPiece().getName().equals("King")) {
+                if(vertical == 0 || vertical == 7) {
                     Board.getBoard()[vertical][horizontal].setPiece(exchangePiece());
                 }
                 return true;
             }
+
+            return true;
         }
         System.out.println("Illegal move!");
         return false;
@@ -103,6 +115,9 @@ public class Pawn extends Piece {
                 String pieceName = scanner.next();
                 try {
                     promotedPiece = otherTeam.getCapturedPieces().stream().filter(e -> e.getName().equals(pieceName)).findFirst().get();
+                    System.out.println(promotedPiece.getIcon());
+                    ownTeam.getPlayerPieces().add(promotedPiece);
+                    otherTeam.getCapturedPieces().remove(promotedPiece);
                     break;
                 }catch ( NoSuchElementException e){
                     System.out.println("Piece hasn't been captured yet. Choose another piece!");

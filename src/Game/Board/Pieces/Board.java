@@ -19,8 +19,10 @@ public class Board {
     }
 
     public static void printBoard() {
-        System.out.println("USER: "+Game.getBlackPlayer().getUser().getUserName() + " " + Game.getBlackPlayer().getUser().getRank());
-        printCaptured(Game.getWhitePlayer());
+        if(Game.getBlackPlayer()!=null) {
+            System.out.println("USER: " + Game.getBlackPlayer().getUser().getUserName() + " " + Game.getBlackPlayer().getUser().getRank());
+            printCaptured(Game.getWhitePlayer());
+        }
         System.out.print("\033[1;37m");
         System.out.println("   1  2  3  4  5  6  7  8");
         System.out.print("\033[0m");
@@ -36,8 +38,10 @@ public class Board {
             }
         }
         System.out.println();
-        printCaptured(Game.getBlackPlayer());
-        System.out.println("USER: "+Game.getWhitePlayer().getUser().getUserName() + " " + Game.getWhitePlayer().getUser().getRank());
+        if(Game.getWhitePlayer()!=null) {
+            printCaptured(Game.getBlackPlayer());
+            System.out.println("USER: " + Game.getWhitePlayer().getUser().getUserName() + " " + Game.getWhitePlayer().getUser().getRank());
+        }
     }
 
     public static void placePawns() {
