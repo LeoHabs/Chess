@@ -71,6 +71,8 @@ public class Rook extends Piece {
             Board.movePiece(this, horizontal, vertical);
              return true;
         }
+
+        if()
         System.out.println("Illegal move!");
         return false;
     }
