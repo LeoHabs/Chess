@@ -26,8 +26,9 @@ public class Menu {
         System.out.println(" ① \uD835\uDDE7\uD835\uDE02\uD835\uDE01\uD835\uDDFC\uD835\uDDFF\uD835\uDDF6\uD835\uDDEE\uD835\uDDF9");
         System.out.println(" ② \uD835\uDDD6\uD835\uDDFF\uD835\uDDF2\uD835\uDDEE\uD835\uDE01\uD835\uDDF2 \uD835\uDE02\uD835\uDE00\uD835\uDDF2\uD835\uDDFF");
         System.out.println(" ③ \uD835\uDDDA\uD835\uDDEE\uD835\uDDFA\uD835\uDDF2");
-        System.out.println(" ④ See player profile");
+        System.out.println(" ④ \uD835\uDDE6\uD835\uDDF2\uD835\uDDF2 \uD835\uDDFD\uD835\uDDF9\uD835\uDDEE\uD835\uDE06\uD835\uDDF2\uD835\uDDFF \uD835\uDDFD\uD835\uDDFF\uD835\uDDFC\uD835\uDDF3\uD835\uDDF6\uD835\uDDF9\uD835\uDDF2");
         System.out.println("----------------------------");
+
         int option = sc.nextInt();
         switch (option) {
             case 1:
