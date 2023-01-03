@@ -118,15 +118,15 @@ public class Users {
             }
         }
         String[] arrOfStr = line.split("\s");
-        System.out.println("👨‍🦲Name: " + arrOfStr[1]);
-        System.out.println("🤓Username: " + arrOfStr[0]);
-        System.out.println("👶Age: " + arrOfStr[2]);
-        System.out.println("＠Email: " + arrOfStr[3]);
-        System.out.println("💎Points: " + arrOfStr[5]);
-        System.out.println("🤴Rank: " + calculateRank(Integer.parseInt(arrOfStr[5])));
+        System.out.println("\033[0;36m" + "👨‍🦲Name: " + "\033[39m" + "\033[49m" + arrOfStr[1]);
+        System.out.println("\033[0;36m" + "🤓Username: " + "\033[39m" + "\033[49m" + arrOfStr[0]);
+        System.out.println("\033[0;36m" + "👶Age: " + "\033[39m" + "\033[49m" + arrOfStr[2]);
+        System.out.println("＠" + "\033[0;36m" + "Email: " + "\033[39m" + "\033[49m" + arrOfStr[3]);
+        System.out.println("\033[0;36m" + "💎Points: " + "\033[39m" + "\033[49m" + arrOfStr[5]);
+        System.out.println("\033[0;36m" + "🤴Rank: " + "\033[39m" + "\033[49m" + calculateRank(Integer.parseInt(arrOfStr[5])));
         System.out.println();
-        URL url = new URL("mailto:"+arrOfStr[3]);
-        System.out.println("Contact "+arrOfStr[1]+" "+ url);
+        URL url = new URL("mailto:" + arrOfStr[3]);
+        System.out.println("Contact " + arrOfStr[1] + " " + url);
     }
 
     public static String calculateRank(int points) {
@@ -145,7 +145,7 @@ public class Users {
         if (points > 1000) {
             return "🧹";
         }
-        if(points >= 0 ){
+        if (points >= 0) {
             return "Unranked";
         }
         return null;

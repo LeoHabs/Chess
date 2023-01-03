@@ -14,7 +14,7 @@ public class Game {
     private static Player whitePlayer;
     private static Player blackPlayer;
 
-    public static Player gameScript(){
+    public static Player gameScript() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
         System.out.println("\033[0;37m" + "White Player: " + "\033[39m" + "\033[49m");
@@ -24,7 +24,7 @@ public class Game {
                 if (Game.getWhitePlayer().getUser() != null) {
                     break;
                 }
-                System.out.println("\033[0;31m" + "You need to create an account first if you haven't yet!" + "\033[39m" + "\033[49m" + "  Go back to menu?(Y/N)");
+                System.out.println("\033[0;31m" + "You need to create an account first if you haven't yet!" + "\033[39m" + "\033[49m" + "\033[0;36m" + " Go back to menu?(Y/N)" + "\033[39m" + "\033[49m");
                 if (scanner.next().equals("Y")) {
                     Menu.mainMenu();
                 }
@@ -39,7 +39,7 @@ public class Game {
                 if (Game.getBlackPlayer().getUser() != null) {
                     break;
                 }
-                System.out.println("\033[0;31m" + "You need to create an account first if you haven't yet!" + "\033[39m" + "\033[49m" + " Go back to menu?(Y/N)");
+                System.out.println("\033[0;31m" + "You need to create an account first if you haven't yet!" + "\033[39m" + "\033[49m" + "\033[0;36m" + " Go back to menu?(Y/N)" + "\033[39m" + "\033[49m");
                 if (scanner.next().equals("Y")) {
                     Menu.mainMenu();
                 }
@@ -93,13 +93,13 @@ public class Game {
         }
         try {
             updatePoints(winner, loser);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return winner;
     }
 
-    public static void updatePoints(Player playerWinner , Player playerLoser) throws IOException {
+    public static void updatePoints(Player playerWinner, Player playerLoser) throws IOException {
         int indexWinner = 0;
         int indexLoser = 0;
         File file = new File("src/User/File/Names");
@@ -116,7 +116,7 @@ public class Game {
         for (int i = 0; i < allfile.length; i++) {
             if (allfile[i].contains(userNameWinner)) {
                 String[] rightLine = allfile[i].split("\s");
-                String points= String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsWinner(playerWinner));
+                String points = String.valueOf(Integer.parseInt(rightLine[5]) + counterPointsWinner(playerWinner));
                 rightLine[5] = points;
                 String updatedLine = Arrays.toString(rightLine);
                 allfile[i] = updatedLine.substring(1, updatedLine.length() - 1);
@@ -140,7 +140,7 @@ public class Game {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
 
         allfile[indexWinner] = allfile[indexWinner].replaceAll(",", "");
-        allfile[indexLoser] = allfile[indexLoser].replaceAll(",","");
+        allfile[indexLoser] = allfile[indexLoser].replaceAll(",", "");
 
         bufferedWriter.write(".\n");
         for (String s : allfile) {
@@ -153,7 +153,6 @@ public class Game {
         }
         bufferedWriter.close();
     }
-
 
 
     public static int counterPointsWinner(Player player) {
