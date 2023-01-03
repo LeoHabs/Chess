@@ -66,12 +66,8 @@ public class RegisteUser {
                     "Numbers " + "\033[39m" + "\033[49m");
         }
         fw.write(" "+ "0 ");
+        fw.write("\n");
         DataBase.users.add(user);
-        System.out.println("Name: " + user.getName());
-        System.out.println("User Name: " + user.getUserName());
-        System.out.println("Age: " + user.getAge());
-        System.out.println("Email: " + user.getEmail());
-        System.out.println("Password: " + user.getPassword());
         fw.close();
     }
 

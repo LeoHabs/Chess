@@ -24,7 +24,7 @@ public class LogIn {
             if (password.equals(arrOfStr[4])) {
                 return new Users(arrOfStr[0], arrOfStr[1], arrOfStr[2], arrOfStr[3], arrOfStr[4],"0",Users.calculateRank(Integer.parseInt(arrOfStr[5])));
             }
-            System.out.println("Your username or password is wrong");
+
             br.close();
             return null;
     }
