@@ -126,7 +126,7 @@ public class Users {
         System.out.println("🤴Rank: " + calculateRank(Integer.parseInt(arrOfStr[5])));
         System.out.println();
         URL url = new URL("mailto:"+arrOfStr[3]);
-        System.out.println("Contact "+arrOfStr[1]+" "+ url);
+        System.out.println("Contact "+arrOfStr[1]+" on "+ url);
     }
 
     public static String calculateRank(int points) {
